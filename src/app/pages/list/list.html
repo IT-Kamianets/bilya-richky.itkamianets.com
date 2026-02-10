@@ -1,4 +1,4 @@
-<div class="list-page">
+﻿<div class="list-page">
   <div class="container-fluid px-4 py-5">
 
     <!-- HEADER -->
@@ -6,39 +6,39 @@
       <div class="row align-items-center g-3">
         <div class="col-md-6">
           <h1 class="page-title">
-            <i class="bi bi-grid-3x3-gap me-2"></i>Каталог товарів
+            <i class="bi bi-grid-3x3-gap me-2"></i>Rooms & Cottages
           </h1>
-          <p class="page-subtitle">Знайдіть ідеальний товар для себе</p>
+          <p class="page-subtitle">Find your stay by the Smotrych river in Kamianets-Podilskyi.</p>
         </div>
       </div>
     </div>
 
 
-    <!-- ⭐ NEW TOOLBAR -->
+    <!-- TOOLBAR -->
     <div class="toolbar mb-4 clean-toolbar">
 
       <!-- LEFT -->
       <div class="toolbar-left">
 
         <!-- Toggle filters -->
-     <button 
-  class="btn-filter-toggle toggle-animated"
-  [class.open]="showFiltersSidebar"
-  (click)="toggleFiltersSidebar()">
+        <button 
+          class="btn-filter-toggle toggle-animated"
+          [class.open]="showFiltersSidebar"
+          (click)="toggleFiltersSidebar()">
 
-  <i class="bi toggle-icon" 
-     [ngClass]="showFiltersSidebar ? 'bi-x-lg' : 'bi-funnel-fill'">
-  </i>
+          <i class="bi toggle-icon" 
+            [ngClass]="showFiltersSidebar ? 'bi-x-lg' : 'bi-funnel-fill'">
+          </i>
 
-  <span class="toggle-text">
-    {{ showFiltersSidebar ? 'Закрити фільтри' : 'Показати фільтри' }}
-  </span>
+          <span class="toggle-text">
+            {{ showFiltersSidebar ? 'Hide filters' : 'Show filters' }}
+          </span>
 
-</button>
+        </button>
 
         <!-- Items found -->
         <div class="results-info">
-          <span>Знайдено <strong>{{ filteredProducts.length }}</strong> товарів</span>
+          <span>Found <strong>{{ filteredProducts.length }}</strong> rooms</span>
         </div>
 
       </div>
@@ -53,7 +53,7 @@
             class="btn-view-mode" 
             [class.active]="viewMode.type === 'grid'"
             (click)="setViewMode('grid')"
-            title="Сітка">
+            title="Grid">
             <i class="bi bi-grid-3x3-gap"></i>
           </button>
 
@@ -61,7 +61,7 @@
             class="btn-view-mode" 
             [class.active]="viewMode.type === 'list'"
             (click)="setViewMode('list')"
-            title="Список">
+            title="List">
             <i class="bi bi-list-ul"></i>
           </button>
 
@@ -76,7 +76,7 @@
     <!-- WRAPPER -->
     <div class="content-wrapper">
 
-      <!-- ⭐ FILTER SIDEBAR (FULL) -->
+      <!-- FILTER SIDEBAR -->
       <aside 
         class="filters-sidebar"
         [class.show]="showMobileFilters"
@@ -87,7 +87,7 @@
           <!-- SIDEBAR HEADER -->
           <div class="filters-header">
             <h5 class="filters-title">
-              <i class="bi bi-funnel me-2"></i>Фільтри
+              <i class="bi bi-funnel me-2"></i>Filters
             </h5>
 
             <!-- Close on mobile -->
@@ -105,7 +105,7 @@
             <!-- SEARCH -->
             <div class="filter-group">
               <label class="filter-label">
-                <i class="bi bi-search me-2"></i>Пошук
+                <i class="bi bi-search me-2"></i>Search
               </label>
 
               <input 
@@ -113,7 +113,7 @@
                 class="form-control search-input"
                 [(ngModel)]="filters.searchQuery"
                 (ngModelChange)="onSearchChange()"
-                placeholder="Пошук товарів...">
+                placeholder="Search rooms...">
             </div>
 
 
@@ -121,7 +121,7 @@
             <!-- CATEGORY -->
             <div class="filter-group">
               <label class="filter-label">
-                <i class="bi bi-tag me-2"></i>Категорія
+                <i class="bi bi-tag me-2"></i>Category
               </label>
 
               <select 
@@ -129,7 +129,7 @@
                 [(ngModel)]="filters.category" 
                 (change)="onCategoryChange()">
 
-                <option value="">Всі категорії</option>
+                <option value="">All categories</option>
                 <option *ngFor="let category of categories" 
                         [value]="category">
                   {{ category }}
@@ -143,11 +143,11 @@
             <!-- PRICE -->
             <div class="filter-group">
               <label class="filter-label">
-                <i class="bi bi-cash me-2"></i>Ціна
+                <i class="bi bi-cash me-2"></i>Rate per night (UAH)
               </label>
 
               <div class="price-display">
-                ${{ filters.priceMin }} – ${{ filters.priceMax }}
+                UAH {{ filters.priceMin }} - UAH {{ filters.priceMax }}
               </div>
 
               <div class="price-range-wrapper">
@@ -165,7 +165,7 @@
                   [(ngModel)]="filters.priceMin"
                   [min]="minPrice"
                   [max]="maxPrice"
-                  step="10"
+                  step="50"
                   (ngModelChange)="onPriceRangeChange()">
 
                 <input 
@@ -174,7 +174,7 @@
                   [(ngModel)]="filters.priceMax"
                   [min]="minPrice"
                   [max]="maxPrice"
-                  step="10"
+                  step="50"
                   (ngModelChange)="onPriceRangeChange()">
 
               </div>
@@ -182,10 +182,10 @@
 
 
 
-            <!-- STOCK -->
+            <!-- AVAILABILITY -->
             <div class="filter-group">
               <label class="filter-label">
-                <i class="bi bi-box-seam me-2"></i>Наявність
+                <i class="bi bi-door-open me-2"></i>Availability
               </label>
 
               <div class="form-check">
@@ -196,7 +196,7 @@
                   (ngModelChange)="onStockFilterChange()">
 
                 <label class="form-check-label">
-                  Тільки в наявності
+                  Show available rooms only
                 </label>
               </div>
             </div>
@@ -206,7 +206,7 @@
             <!-- SORTING -->
             <div class="filter-group">
               <label class="filter-label">
-                <i class="bi bi-arrow-down-up me-2"></i>Сортування
+                <i class="bi bi-arrow-down-up me-2"></i>Sort by
               </label>
 
               <select 
@@ -214,11 +214,11 @@
                 [(ngModel)]="filters.sortBy"
                 (change)="onSortChange()">
 
-                <option value="newest">Новинки</option>
-                <option value="price-asc">Ціна: низька → висока</option>
-                <option value="price-desc">Ціна: висока → низька</option>
-                <option value="rating">Рейтинг</option>
-                <option value="name">Назва А-Я</option>
+                <option value="newest">Newest</option>
+                <option value="price-asc">Price: low > high</option>
+                <option value="price-desc">Price: high > low</option>
+                <option value="rating">Guest rating</option>
+                <option value="name">Name A-Z</option>
 
               </select>
             </div>
@@ -231,7 +231,7 @@
               *ngIf="hasActiveFilters()"
               (click)="resetFilters()">
               <i class="bi bi-arrow-counterclockwise me-2"></i>
-              Скинути всі фільтри
+              Reset all filters
             </button>
 
 
@@ -243,7 +243,7 @@
 
 
 
-      <!-- ⭐ PRODUCTS -->
+      <!-- ROOMS -->
       <main class="products-main">
 
         <div class="products-container" *ngIf="displayedProducts.length > 0">
@@ -268,12 +268,12 @@
         <!-- EMPTY -->
         <div class="empty-state" *ngIf="displayedProducts.length === 0">
           <i class="bi bi-inbox empty-icon"></i>
-          <h3 class="empty-title">Нічого не знайдено</h3>
-          <p class="empty-text">Спробуйте змінити фільтри</p>
+          <h3 class="empty-title">No rooms found</h3>
+          <p class="empty-text">Try adjusting your filters or search.</p>
 
           <button class="btn btn-primary mt-3" (click)="resetFilters()">
             <i class="bi bi-arrow-counterclockwise me-2"></i>
-            Скинути фільтри
+            Reset filters
           </button>
         </div>
 
@@ -281,7 +281,7 @@
 
         <!-- PAGINATION -->
         <div class="pagination-container" *ngIf="totalPages > 1">
-          <nav aria-label="Навігація по сторінках">
+          <nav aria-label="Rooms navigation">
             <ul class="pagination">
 
               <li class="page-item" [class.disabled]="currentPage === 1">
@@ -324,3 +324,6 @@
      *ngIf="showMobileFilters" 
      (click)="toggleMobileFilters()">
 </div>
+
+
+

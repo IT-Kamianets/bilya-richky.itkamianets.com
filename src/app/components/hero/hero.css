@@ -36,6 +36,38 @@
 	filter: blur(18px);
 }
 
+.hero-photo {
+	position: relative;
+	overflow: hidden;
+	border-radius: calc(var(--radius-card) + 6px);
+	background: var(--c-bg-secondary);
+}
+
+.hero-photo__img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+}
+
+.hero-photo__caption {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: var(--sp-3) var(--sp-4);
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+	color: #ffffff;
+	display: grid;
+	gap: 4px;
+}
+
+.hero-photo__caption .small {
+	color: #ffffff;
+}
+
 .hero .card {
 	background: var(--c-bg-secondary);
 	border-color: var(--c-border) !important;
@@ -58,8 +90,9 @@
 }
 
 .hero .btn-dark {
-	background: var(--c-text-secondary) !important;
-	border-color: var(--c-text-secondary) !important;
+	background: var(--c-btn-dark-bg) !important;
+	border-color: var(--c-btn-dark-border) !important;
+	color: var(--c-on-dark) !important;
 }
 
 .hero .btn-outline-secondary {

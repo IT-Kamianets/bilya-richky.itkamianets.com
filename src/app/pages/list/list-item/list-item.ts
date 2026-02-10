@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, inject } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/Product.model';
@@ -98,14 +98,15 @@ export class ListItem implements OnInit {
   }
 
   getStockStatus(): string {
-    if (this.product.stock === 0) return 'Немає в наявності';
-    if (this.product.stock < 10) return `Залишилось ${this.product.stock}`;
-    return 'В наявності';
+    if (this.product.stock === 0) return 'Sold out';
+    if (this.product.stock < 5) return `Only ${this.product.stock} rooms left`;
+    return 'Available now';
   }
 
   getStockClass(): string {
     if (this.product.stock === 0) return 'out-of-stock';
-    if (this.product.stock < 10) return 'low-stock';
+    if (this.product.stock < 5) return 'low-stock';
     return 'in-stock';
   }
 }
+

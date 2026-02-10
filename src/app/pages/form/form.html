@@ -1,28 +1,105 @@
-<main class="form-page">
+﻿<main class="form-page">
   <div class="container py-5">
-    <h3 class="mb-4 fw-bold">Checkout Form</h3>
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-lg-between mb-4 gap-3">
+      <div>
+        <h3 class="mb-2 fw-bold">Booking request</h3>
+        <p class="text-muted mb-0">
+          Tell us your dates and room preferences. We confirm availability by phone or email.
+        </p>
+      </div>
+      <div class="text-muted small">
+        Bilya Richky Hotel (Біля річки) - 5 Onufriivska Street, Kamianets-Podilskyi
+      </div>
+    </div>
     
     <div class="row g-5">
-      <div class="col-md-7">
+      <div class="col-lg-7">
         <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-          <div *ngFor="let field of formFields" class="mb-3">
-            <label class="form-label fw-semibold">{{ field.label }}</label>
-            <input 
-              [type]="field.type" 
-              class="form-control" 
-              [formControlName]="field.key" 
-              [placeholder]="field.placeholder">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Full name</label>
+              <input 
+                type="text"
+                class="form-control" 
+                formControlName="fullName" 
+                placeholder="Your name">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Phone</label>
+              <input 
+                type="tel" 
+                class="form-control" 
+                formControlName="phone" 
+                placeholder="+38 (0__) ___-__-__">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Email</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                formControlName="email" 
+                placeholder="you@example.com">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Check-in</label>
+              <input 
+                type="date" 
+                class="form-control" 
+                formControlName="checkIn">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Check-out</label>
+              <input 
+                type="date" 
+                class="form-control" 
+                formControlName="checkOut">
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Guests</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                formControlName="guests"
+                min="1"
+                placeholder="2">
+            </div>
+
+            <div class="col-md-8">
+              <label class="form-label fw-semibold">Room preference</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="roomPreference" 
+                placeholder="Standard double room (2 guests)">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Message</label>
+              <textarea 
+                class="form-control" 
+                rows="4" 
+                formControlName="message"
+                placeholder="Let us know if you need a baby cot, late arrival, or a special setup."></textarea>
+            </div>
           </div>
           
           <button class="btn btn-dark w-100 mt-4 py-2" type="submit" [disabled]="checkoutForm.invalid">
-            Submit Order
+            Send booking request
           </button>
+          <p class="small text-muted mt-2 mb-0">
+            We reply within 24 hours with confirmation and payment details.
+          </p>
         </form>
       </div>
 
-      <div class="col-md-5">
+      <div class="col-lg-5">
         <div class="card border rounded-4 shadow-sm p-4">
-          <h5 class="fw-bold mb-3">Selected Item</h5>
+          <h5 class="fw-bold mb-3">Selected room</h5>
           
           <div *ngIf="selectedProduct">
             <div class="ratio ratio-16x9 rounded overflow-hidden mb-3 border">
@@ -33,18 +110,51 @@
             
             <p class="text-muted small mb-3">{{ selectedProduct.description }}</p>
 
+            <div class="d-flex flex-wrap gap-2 mb-3" *ngIf="selectedProduct.specifications">
+              <span class="badge text-bg-light border" *ngIf="selectedProduct.specifications['Sleeps']">
+                Sleeps {{ selectedProduct.specifications['Sleeps'] }}
+              </span>
+              <span class="badge text-bg-light border" *ngIf="selectedProduct.specifications['View']">
+                {{ selectedProduct.specifications['View'] }}
+              </span>
+            </div>
+
             <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top">
               <span class="badge bg-secondary">{{ selectedProduct.category }}</span>
-              <h3 class="fw-bold text-primary mb-0">${{ selectedProduct.price }}</h3>
+              <div class="text-end">
+                <div class="fw-bold text-primary">UAH {{ selectedProduct.price }}</div>
+                <div class="small text-muted">per night - seasonal rates</div>
+              </div>
             </div>
           </div>
 
           <div *ngIf="!selectedProduct" class="text-muted">
-            <p>No item selected.</p>
-            <a routerLink="/table" class="btn btn-outline-secondary btn-sm w-100">Go to Shop</a>
+            <p>No room selected yet.</p>
+            <a routerLink="/list" class="btn btn-outline-secondary btn-sm w-100">Browse rooms</a>
+          </div>
+
+          <div class="border-top mt-4 pt-3 small text-muted">
+            <div class="d-flex justify-content-between">
+              <span>Check-in</span>
+              <span>14:00</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Check-out</span>
+              <span>12:00</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Contact</span>
+              <span>+38 (097) 258-17-34</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Email</span>
+              <span>info@hotel-kp.com.ua</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </main>
+
+

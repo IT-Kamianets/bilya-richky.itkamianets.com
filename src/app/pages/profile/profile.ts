@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -50,7 +50,6 @@ export class Profile implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Підписка з відпискою у ngOnDestroy
     this.routeSub = this.route.paramMap.subscribe(params => {
       const id = params.get('id');
 
@@ -106,12 +105,6 @@ export class Profile implements OnInit, OnDestroy {
     return stored ? JSON.parse(stored) : [];
   }
 
-  getCartFromStorage(): any[] {
-    if (!this.isBrowser()) return [];
-    const stored = localStorage.getItem('cart');
-    return stored ? JSON.parse(stored) : [];
-  }
-
   toggleFavorite(): void {
     if (!this.isBrowser() || !this.product) return;
 
@@ -122,36 +115,18 @@ export class Profile implements OnInit, OnDestroy {
       this.isFavorite = false;
       const updated = favs.filter(x => x !== id);
       localStorage.setItem('favorites', JSON.stringify(updated));
-      this.showNotification('Видалено з улюблених');
+      this.showNotification('Removed from saved rooms');
     } else {
       this.isFavorite = true;
       favs.push(id);
       localStorage.setItem('favorites', JSON.stringify(favs));
-      this.showNotification('Додано в улюблені');
+      this.showNotification('Saved to favorites');
     }
   }
 
-  addToCart(): void {
-    if (!this.product || !this.isBrowser()) return;
-
-    let cart = this.getCartFromStorage();
-    const existing = cart.find(i => i.id === this.product!.id);
-
-    if (existing) {
-      existing.quantity += this.quantity;
-    } else {
-      cart.push({
-        id: this.product.id,
-        title: this.product.title,
-        price: this.product.price,
-        image: this.product.image,
-        quantity: this.quantity
-      });
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.showNotification(`${this.product.title} додано в кошик (${this.quantity} шт.)`);
-    this.quantity = 1;
+  startBooking(): void {
+    if (!this.product) return;
+    this.router.navigate(['/form'], { queryParams: { id: this.product.id, rooms: this.quantity } });
   }
 
   showNotification(msg: string): void {
@@ -201,7 +176,7 @@ export class Profile implements OnInit, OnDestroy {
     }
 
     this.product.reviews.unshift(review);
-    this.showNotification('Дякуємо за ваш відгук!');
+    this.showNotification('Thanks for your review!');
     this.resetReviewForm();
     this.showReviewForm = false;
   }
@@ -241,7 +216,7 @@ export class Profile implements OnInit, OnDestroy {
   copyToClipboard(text: string): void {
     if (!this.isBrowser()) return;
     navigator.clipboard.writeText(text).then(() => {
-      this.showNotification('Посилання скопійовано');
+      this.showNotification('Link copied');
     });
   }
 
@@ -262,20 +237,20 @@ export class Profile implements OnInit, OnDestroy {
 
   getStockStatus(): string {
     if (!this.product) return '';
-    if (this.product.stock === 0) return 'Немає в наявності';
-    if (this.product.stock < 10) return `Залишилось ${this.product.stock} шт.`;
-    return 'В наявності';
+    if (this.product.stock === 0) return 'Sold out';
+    if (this.product.stock < 5) return `Only ${this.product.stock} rooms left`;
+    return 'Available now';
   }
 
   getStockClass(): string {
     if (!this.product) return '';
     if (this.product.stock === 0) return 'out-of-stock';
-    if (this.product.stock < 10) return 'low-stock';
+    if (this.product.stock < 5) return 'low-stock';
     return 'in-stock';
   }
 
   formatDate(date: Date): string {
-    return new Date(date).toLocaleDateString('uk-UA', {
+    return new Date(date).toLocaleDateString('en-GB', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -306,3 +281,4 @@ export class Profile implements OnInit, OnDestroy {
     this.newReview.rating = rating;
   }
 }
+

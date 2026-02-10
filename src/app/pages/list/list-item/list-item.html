@@ -1,4 +1,4 @@
-<div class="product-card" 
+﻿<div class="product-card" 
      [class.list-view]="viewMode === 'list'"
      [class.out-of-stock]="!isInStock()"
      (click)="onView()"
@@ -11,9 +11,9 @@
     
     <!-- Badges -->
     <div class="product-badges">
-      <span class="badge badge-new" *ngIf="product.isNew">Новинка</span>
+      <span class="badge badge-new" *ngIf="product.isNew">New</span>
       <span class="badge badge-discount" *ngIf="hasDiscount()">-{{ product.discount }}%</span>
-      <span class="badge badge-out" *ngIf="!isInStock()">Немає</span>
+      <span class="badge badge-out" *ngIf="!isInStock()">Sold out</span>
     </div>
     
     <!-- Quick Actions -->
@@ -21,12 +21,12 @@
       <button class="btn-quick-action btn-favorite" 
               [class.active]="isFavorite"
               (click)="toggleFavorite($event)"
-              [title]="isFavorite ? 'Видалити з улюблених' : 'Додати в улюблені'">
+              [title]="isFavorite ? 'Remove from saved' : 'Save this room'">
         <i class="bi" [ngClass]="isFavorite ? 'bi-heart-fill' : 'bi-heart'"></i>
       </button>
       <button class="btn-quick-action btn-quick-view" 
               (click)="onView()"
-              title="Швидкий перегляд">
+              title="Quick view">
         <i class="bi bi-eye"></i>
       </button>
     </div>
@@ -44,7 +44,7 @@
     <!-- Title -->
     <h5 class="product-title" [title]="product.title">{{ product.title }}</h5>
     
-    <!-- Description (только в list view) -->
+    <!-- Description (only in list view) -->
     <p class="product-description" *ngIf="viewMode === 'list'">
       {{ product.description }}
     </p>
@@ -59,34 +59,37 @@
       <span class="reviews-count" *ngIf="product.reviews">({{ product.reviews.length }})</span>
     </div>
     
-    <!-- Price & Stock -->
+    <!-- Price & Availability -->
     <div class="product-footer">
       <div class="price-container">
         <div class="price-row" *ngIf="!hasDiscount()">
-          <span class="price-current">${{ product.price.toFixed(2) }}</span>
+          <span class="price-current">UAH {{ product.price.toFixed(0) }}</span>
+          <span class="price-note">/ night</span>
         </div>
         <div class="price-row" *ngIf="hasDiscount()">
-          <span class="price-old">${{ product.price.toFixed(2) }}</span>
-          <span class="price-discounted">${{ getDiscountedPrice().toFixed(2) }}</span>
+          <span class="price-old">UAH {{ product.price.toFixed(0) }}</span>
+          <span class="price-discounted">UAH {{ getDiscountedPrice().toFixed(0) }}</span>
+          <span class="price-note">/ night</span>
         </div>
         <div class="stock-status" [ngClass]="getStockClass()">
           <i class="bi" [ngClass]="{
-            'bi-check-circle': isInStock() && product.stock >= 10,
-            'bi-exclamation-circle': product.stock < 10 && product.stock > 0,
+            'bi-check-circle': isInStock() && product.stock >= 5,
+            'bi-exclamation-circle': product.stock < 5 && product.stock > 0,
             'bi-x-circle': !isInStock()
           }"></i>
           <span>{{ getStockStatus() }}</span>
         </div>
       </div>
       
-      <!-- Add to Cart Button -->
+      <!-- Request Button -->
       <button class="btn btn-add-cart" 
               (click)="onQuickAdd($event)"
               [disabled]="!isInStock()">
-        <i class="bi bi-cart-plus"></i>
-        <span *ngIf="viewMode === 'list'">Додати в кошик</span>
+        <i class="bi bi-calendar-check"></i>
+        <span *ngIf="viewMode === 'list'">Request stay</span>
       </button>
     </div>
     
   </div>
 </div>
+

@@ -233,8 +233,9 @@
   width: 280px;
   flex-shrink: 0;
   position: sticky;
-  top: var(--sp-4);
+  top: calc(var(--header-height, 72px) + var(--sp-4));
   max-height: calc(100vh - var(--sp-8));
+  z-index: 1;
   overflow-y: auto;
   transition: transform var(--motion) var(--easing);
 }
@@ -614,12 +615,12 @@
 @media (max-width: 1024px) {
   .filters-sidebar {
     position: fixed;
-    top: 0;
+    top: var(--header-height, 60px);
     left: -100%;
     width: 320px;
     max-width: 85vw;
-    height: 100vh;
-    max-height: 100vh;
+    height: calc(100vh - var(--header-height, 60px));
+    max-height: calc(100vh - var(--header-height, 60px));
     z-index: 1001;
     background-color: var(--c-bg-secondary);
     box-shadow: var(--shadow-lg);
@@ -637,7 +638,7 @@
   .mobile-filter-overlay {
     display: block;
     position: fixed;
-    top: 0;
+    top: var(--header-height, 60px);
     left: 0;
     right: 0;
     bottom: 0;

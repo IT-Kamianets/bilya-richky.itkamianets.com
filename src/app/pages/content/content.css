@@ -107,8 +107,9 @@
 }
 
 .content-page .btn-dark {
-	background: var(--c-text-secondary) !important;
-	border-color: var(--c-text-secondary) !important;
+	background: var(--c-btn-dark-bg) !important;
+	border-color: var(--c-btn-dark-border) !important;
+	color: var(--c-on-dark) !important;
 }
 
 .content-page .page-link {

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-// Правильні імпорти
 import { PRODUCTS } from '../../data/products';
 import { Product } from '../../models/Product.model';
 
@@ -17,14 +16,6 @@ export class FormPage implements OnInit {
   checkoutForm: FormGroup;
   selectedProduct: Product | null = null;
 
-  formFields = [
-    { key: 'fullName', label: 'Full Name', type: 'text', placeholder: 'Enter your name' },
-    { key: 'email', label: 'Email', type: 'email', placeholder: 'you@example.com' },
-    { key: 'address', label: 'Address', type: 'text', placeholder: '123 Main St' },
-    { key: 'city', label: 'City', type: 'text', placeholder: 'New York' },
-    { key: 'zip', label: 'Zip Code', type: 'text', placeholder: '10001' }
-  ];
-
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -32,33 +23,41 @@ export class FormPage implements OnInit {
   ) {
     this.checkoutForm = this.fb.group({
       fullName: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      zip: ['', Validators.required]
+      checkIn: ['', Validators.required],
+      checkOut: ['', Validators.required],
+      guests: [2, [Validators.required, Validators.min(1)]],
+      roomPreference: [''],
+      message: ['']
     });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
+      const rooms = Number(params['rooms'] || 1);
       if (id) {
-        // Конвертуємо id в число, бо з URL воно приходить як рядок
         const found = PRODUCTS.find(p => p.id === Number(id));
         if (found) {
           this.selectedProduct = found;
+          this.checkoutForm.patchValue({ roomPreference: found.title });
         }
+      }
+
+      if (rooms > 1) {
+        const existing = this.checkoutForm.value.message || '';
+        this.checkoutForm.patchValue({ message: `${existing} Requesting ${rooms} rooms.`.trim() });
       }
     });
   }
 
   onSubmit() {
     if (this.checkoutForm.valid) {
-      // Використовуємо title замість name
-      alert(`Order for ${this.selectedProduct ? this.selectedProduct.title : 'items'} placed!`);
-      this.checkoutForm.reset();
-      this.selectedProduct = null;
-      this.router.navigate(['/table']);
+      alert('Thank you! Your booking request was sent. We will confirm availability within 24 hours.');
+      this.checkoutForm.reset({ guests: 2, roomPreference: this.selectedProduct?.title || '' });
+      this.router.navigate(['/form']);
     }
   }
 }
+

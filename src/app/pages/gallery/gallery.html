@@ -1,8 +1,8 @@
-<main class="gallery">
+﻿<main class="gallery">
 	<section class="bg-white border-bottom">
 		<div class="container-lg px-4 py-5 py-lg-6">
 			<div
-				class="d-flex flex-column gap-3 flex-lg-row align-items-lg-end justify-content-lg-between"
+					class="d-flex flex-column gap-3 flex-lg-row align-items-lg-end justify-content-lg-between"
 			>
 				<div>
 					<nav aria-label="breadcrumb" class="mb-2">
@@ -13,7 +13,7 @@
 					</nav>
 					<h1 class="display-6 fw-bold mb-2">Gallery</h1>
 					<p class="text-secondary mb-0">
-						A curated set of visual studies across multiple themes.
+						A visual tour of rooms, riverside views, and the Old Town atmosphere.
 					</p>
 				</div>
 				<span class="badge text-bg-light border text-secondary">
@@ -35,7 +35,7 @@
 								id="gallerySearch"
 								type="text"
 								class="form-control"
-								placeholder="Search images"
+								placeholder="Search rooms, views, cuisine"
 								[(ngModel)]="searchTerm"
 								(ngModelChange)="onFiltersChanged()"
 							/>
@@ -87,14 +87,14 @@
 								</span>
 							</div>
 							<div class="mt-auto d-flex justify-content-between align-items-center">
-								<small class="text-secondary">Updated today</small>
+								<small class="text-secondary">Updated for this season</small>
 								<a
 									class="btn btn-sm btn-outline-secondary fw-semibold"
 									[href]="item.imageUrl"
 									target="_blank"
 									rel="noopener"
 								>
-									Open
+									View
 								</a>
 							</div>
 						</div>
@@ -146,3 +146,4 @@
 		</div>
 	</section>
 </main>
+

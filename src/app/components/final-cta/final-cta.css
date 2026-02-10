@@ -30,8 +30,9 @@ h2,
 }
 
 .btn-dark {
-	background: var(--c-text-secondary) !important;
-	border-color: var(--c-text-secondary) !important;
+	background: var(--c-btn-dark-bg) !important;
+	border-color: var(--c-btn-dark-border) !important;
+	color: var(--c-on-dark) !important;
 }
 
 .btn-outline-secondary {

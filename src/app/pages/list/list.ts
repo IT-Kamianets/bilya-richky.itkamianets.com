@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -52,8 +52,8 @@ export class List implements OnInit {
 
   filters: ProductFilters = {
     category: '',
-    priceMin: 0,
-    priceMax: 1000,
+    priceMin: 700,
+    priceMax: 2000,
     searchQuery: '',
     sortBy: 'newest',
     inStockOnly: false
@@ -67,8 +67,8 @@ export class List implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
 
-  maxPrice: number = 1000;
-  minPrice: number = 0;
+  maxPrice: number = 2000;
+  minPrice: number = 700;
 
   showMobileFilters: boolean = false;
 
@@ -97,6 +97,7 @@ export class List implements OnInit {
 
     this.minPrice = Math.min(...this.products.map(p => p.price));
     this.maxPrice = Math.ceil(Math.max(...this.products.map(p => p.price)) / 100) * 100;
+    this.filters.priceMin = this.minPrice;
     this.filters.priceMax = this.maxPrice;
   }
 
@@ -234,22 +235,10 @@ export class List implements OnInit {
   }
 
   // ============================================
-  // CART
+  // REQUEST STAY
   // ============================================
   onQuickAddToCart(product: Product): void {
-    const cart = this.getCartFromStorage();
-    const item = cart.find((c: any) => c.id === product.id);
-
-    if (item) item.quantity++;
-    else cart.push({ id: product.id, title: product.title, price: product.price, image: product.image, quantity: 1 });
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${product.title} додано в кошик`);
-  }
-
-  getCartFromStorage(): any[] {
-    const store = localStorage.getItem('cart');
-    return store ? JSON.parse(store) : [];
+    this.router.navigate(['/form'], { queryParams: { id: product.id } });
   }
 
   // ============================================
@@ -279,3 +268,4 @@ export class List implements OnInit {
     );
   }
 }
+

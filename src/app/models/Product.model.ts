@@ -1,4 +1,10 @@
-// models/Product.model.ts
+﻿// models/Product.model.ts
+export interface RoomSpecifications {
+  Sleeps?: number | string;
+  View?: string;
+  [key: string]: any;
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -7,20 +13,18 @@ export interface Product {
   category: string;
   image: string;
   rating: number;
-  
-  // Розширені поля
-  images?: string[];              // Галерея фото (мініатюри)
-  stock: number;                  // Кількість на складі
-  sku?: string;                   // Артикул
-  brand?: string;                 // Бренд
-  discount?: number;              // Знижка в %
-  isNew?: boolean;                // Новинка
-  specifications?: {              // Детальні характеристики
-    [key: string]: string;
-  };
-  reviews?: ProductReview[];      // Відгуки користувачів
-  relatedProductIds?: number[];   // ID схожих товарів
-  tags?: string[];                // Теги для пошуку
+
+  // Extended fields used by the hotel site
+  images?: string[]; // Gallery images
+  stock: number; // Availability count
+  sku?: string; // Room code
+  brand?: string; // Wing or building
+  discount?: number; // Discount in %
+  isNew?: boolean; // Newly added room
+  specifications?: RoomSpecifications;
+  reviews?: ProductReview[];
+  relatedProductIds?: number[];
+  tags?: string[];
 }
 
 export interface ProductReview {
@@ -29,10 +33,9 @@ export interface ProductReview {
   rating: number;
   comment: string;
   date: Date;
-  verified?: boolean;             // Підтверджена покупка
+  verified?: boolean;
 }
 
-// Тип для фільтрів
 export interface ProductFilters {
   category: string;
   priceMin: number;
@@ -42,8 +45,9 @@ export interface ProductFilters {
   inStockOnly: boolean;
 }
 
-// Тип для налаштувань відображення
 export interface ViewMode {
   type: 'grid' | 'list';
   itemsPerPage: number;
 }
+
+

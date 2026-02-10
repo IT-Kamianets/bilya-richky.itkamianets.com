@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/Product.model';
@@ -14,12 +14,12 @@ import { PRODUCTS } from '../../data/products';
 })
 export class ListItemsSection implements OnInit {
   products: Product[] = [];
-  
-  @Input() title: string = 'Наші продукти';
-  @Input() subtitle: string = 'Найкращі пропозиції тижня';
+
+  @Input() title: string = 'Featured Rooms & Cottages';
+  @Input() subtitle: string = 'A few popular room types and cottages for a calm stay.';
   @Input() maxItems: number = 3;
   @Input() showViewAll: boolean = true;
-  @Input() viewAllText: string = 'Подивитися всі';
+  @Input() viewAllText: string = 'View all rooms';
 
   constructor(private router: Router) {}
 
@@ -39,3 +39,4 @@ export class ListItemsSection implements OnInit {
     this.router.navigate(['/list']);
   }
 }
+

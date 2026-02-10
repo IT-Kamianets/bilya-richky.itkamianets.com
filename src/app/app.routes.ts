@@ -1,9 +1,9 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { Public } from './layouts/public/public';
 import { Content } from './pages/content/content';
 import { FormPage } from './pages/form/form';
 import { Gallery } from './pages/gallery/gallery';
-import { Home } from './pages/home/home'; // Verify your exact path/filename
+import { Home } from './pages/home/home';
 import { List } from './pages/list/list';
 import { TablePage } from './pages/table/table';
 
@@ -13,6 +13,7 @@ export const routes: Routes = [
 		component: Public,
 		children: [
 			{ path: '', component: Home },
+			{ path: 'home', component: Home },
 			{ path: 'list', component: List },
 			{ path: 'gallery', component: Gallery },
 			{ path: 'content', component: Content },
@@ -30,3 +31,4 @@ export const routes: Routes = [
 		redirectTo: '',
 	},
 ];
+

@@ -1,7 +1,13 @@
-<main class="table-page">
+﻿<main class="table-page">
   <section class="py-5">
     <div class="container">
-      <h2 class="mb-4 fw-bold">Product List</h2>
+      <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-md-between mb-4">
+        <div>
+          <h2 class="mb-2 fw-bold">Room rates & quick comparison</h2>
+          <p class="text-muted mb-0">Seasonal rates shown in UAH. Final price depends on dates and stay length.</p>
+        </div>
+        <span class="badge text-bg-light border">Updated for 2026 season</span>
+      </div>
       
       <div class="card border rounded-4 shadow-sm overflow-hidden">
         <div class="table-responsive">
@@ -9,11 +15,12 @@
             <thead class="bg-light border-bottom">
               <tr>
                 <th scope="col" class="ps-4" style="width: 140px;">Image</th>
-                <th scope="col">Product Name</th>
+                <th scope="col">Room</th>
                 <th scope="col">Category</th>
-                <th scope="col">Rating</th>
-                <th scope="col" class="text-end">Price</th>
-                <th scope="col" class="pe-4 text-end" style="width: 120px;">Action</th>
+                <th scope="col">Sleeps</th>
+                <th scope="col">View</th>
+                <th scope="col" class="text-end">Rate from</th>
+                <th scope="col" class="pe-4 text-end" style="width: 140px;">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -32,18 +39,21 @@
                   <span class="badge text-bg-light border">{{ item.category }}</span>
                 </td>
 
-                <td class="small fw-bold">
-                  <i class="bi bi-star-fill text-warning me-1"></i>
-                  <span>{{ item.rating }}</span>
+                <td class="small fw-semibold">
+                  {{ item.specifications?.['Sleeps'] || 'N/A' }} guests
+                </td>
+
+                <td class="small">
+                  {{ item.specifications?.['View'] || 'N/A' }}
                 </td>
 
                 <td class="text-end fw-bold">
-                  ${{ item.price }}
+                  UAH {{ item.price }}
                 </td>
 
-                <td class="pe-4">
-                  <button class="btn btn-sm btn-outline-secondary w-100 disabled">
-                    Edit
+                <td class="pe-4 text-end">
+                  <button class="btn btn-sm btn-outline-secondary w-100" (click)="buyNow(item)">
+                    Request stay
                   </button>
                 </td>
               </tr>
@@ -51,6 +61,12 @@
           </table>
         </div>
       </div>
+
+      <div class="mt-4 text-muted small">
+        Check-in from 14:00, check-out by 12:00. Breakfast from 70 UAH per person. Booking requires 50% prepayment (refundable with 7+ days notice).
+      </div>
     </div>
   </section>
 </main>
+
+
