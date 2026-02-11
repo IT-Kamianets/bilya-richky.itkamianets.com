@@ -126,7 +126,7 @@ export class Profile implements OnInit, OnDestroy {
 
   startBooking(): void {
     if (!this.product) return;
-    this.router.navigate(['/form'], { queryParams: { id: this.product.id, rooms: this.quantity } });
+    this.router.navigate(['/booking'], { queryParams: { id: this.product.id, rooms: this.quantity } });
   }
 
   showNotification(msg: string): void {
@@ -190,7 +190,7 @@ export class Profile implements OnInit, OnDestroy {
   }
 
   navigateToList(): void {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/rooms']);
   }
 
   navigateToProduct(id: number): void {

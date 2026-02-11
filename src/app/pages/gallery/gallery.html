@@ -1,124 +1,70 @@
-﻿<main class="gallery">
-	<section class="bg-white border-bottom">
-		<div class="container-lg px-4 py-5 py-lg-6">
-			<div
-					class="d-flex flex-column gap-3 flex-lg-row align-items-lg-end justify-content-lg-between"
-			>
-				<div>
-					<nav aria-label="breadcrumb" class="mb-2">
-						<ol class="breadcrumb mb-0 small">
-							<li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Gallery</li>
-						</ol>
-					</nav>
-					<h1 class="display-6 fw-bold mb-2">Gallery</h1>
-					<p class="text-secondary mb-0">
-						A visual tour of rooms, riverside views, and the Old Town atmosphere.
-					</p>
-				</div>
-				<span class="badge text-bg-light border text-secondary">
-					{{ filteredItems.length }} items
-				</span>
-			</div>
-
-			<div class="card border rounded-4 shadow-sm bg-body-tertiary mt-4 gallery-filters">
-				<div class="card-body p-4">
-					<div class="row g-3 g-lg-4 align-items-end">
-						<div class="col-12 col-md-7">
-							<label
-								class="form-label small fw-semibold text-secondary"
-								for="gallerySearch"
-							>
-								Search
-							</label>
-							<input
-								id="gallerySearch"
-								type="text"
-								class="form-control"
-								placeholder="Search rooms, views, cuisine"
-								[(ngModel)]="searchTerm"
-								(ngModelChange)="onFiltersChanged()"
-							/>
-						</div>
-						<div class="col-12 col-md-5">
-							<label
-								class="form-label small fw-semibold text-secondary"
-								for="galleryCategory"
-							>
-								Category
-							</label>
-							<select
-								id="galleryCategory"
-								class="form-select"
-								[(ngModel)]="selectedCategory"
-								(ngModelChange)="onFiltersChanged()"
-							>
-								<option *ngFor="let category of categories" [value]="category">
-									{{ category }}
-								</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
+﻿<main class="gallery-page">
+	<section class="gallery-hero">
+		<div class="container-lg px-4 py-5">
+			<p class="section-kicker">Gallery</p>
+			<h1 class="section-title">A visual tour of Bilya Richky</h1>
+			<p class="section-subtitle">
+				Rooms, terraces, and canyon views captured across the seasons.
+			</p>
 		</div>
 	</section>
 
-	<section class="bg-light">
-		<div class="container-lg px-4 py-5 py-lg-6">
-			<div class="row g-3 g-lg-4 gallery-grid" *ngIf="hasResults; else noResults">
-				<div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let item of pagedItems">
-					<div class="card border rounded-4 h-100 shadow-sm">
-						<img
-							[src]="item.imageUrl"
-							class="card-img-top"
-							[alt]="item.title"
-							loading="lazy"
-						/>
-						<div class="card-body p-4 d-flex flex-column">
-							<h2 class="h5 fw-semibold mb-1">{{ item.title }}</h2>
-							<p class="small text-secondary mb-3">{{ item.subtitle }}</p>
-							<div class="d-flex flex-wrap gap-2 mb-3">
-								<span
-									class="badge text-bg-light border text-secondary"
-									*ngFor="let tag of item.tags"
-								>
-									{{ tag }}
-								</span>
-							</div>
-							<div class="mt-auto d-flex justify-content-between align-items-center">
-								<small class="text-secondary">Updated for this season</small>
-								<a
-									class="btn btn-sm btn-outline-secondary fw-semibold"
-									[href]="item.imageUrl"
-									target="_blank"
-									rel="noopener"
-								>
-									View
-								</a>
-							</div>
-						</div>
-					</div>
+	<section class="gallery-body page-body">
+		<div class="container-lg px-4 pb-5">
+			<div class="gallery-filters">
+				<div class="gallery-filters__search">
+					<label class="form-label">Search</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Search rooms, views, dining"
+						[(ngModel)]="searchTerm"
+						(ngModelChange)="onFiltersChanged()"
+					/>
+				</div>
+				<div class="gallery-filters__select">
+					<label class="form-label">Category</label>
+					<select
+						class="form-select"
+						[(ngModel)]="selectedCategory"
+						(ngModelChange)="onFiltersChanged()"
+					>
+						<option *ngFor="let category of categories" [value]="category">
+							{{ category }}
+						</option>
+					</select>
+				</div>
+				<div class="gallery-filters__count">
+					<span class="badge-soft">{{ filteredItems.length }} photos</span>
 				</div>
 			</div>
-			<ng-template #noResults>
-				<div class="card border rounded-4 shadow-sm">
-					<div class="card-body p-4 text-center">
-						<p class="fw-semibold mb-1">No results</p>
-						<p class="text-secondary mb-0">Try adjusting your search or category.</p>
+
+			<div class="gallery-grid" *ngIf="hasResults; else noResults">
+				<button
+					class="gallery-item"
+					type="button"
+					*ngFor="let item of pagedItems"
+					(click)="openModal(item)"
+					[aria-label]="'Open photo of ' + item.title"
+				>
+					<img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+					<div class="gallery-item__overlay">
+						<h3>{{ item.title }}</h3>
+						<p>{{ item.subtitle }}</p>
 					</div>
+				</button>
+			</div>
+
+			<ng-template #noResults>
+				<div class="gallery-empty">
+					<p>No results found. Try a different category.</p>
 				</div>
 			</ng-template>
 
-			<nav class="mt-4 mt-lg-5" aria-label="Gallery pagination" *ngIf="hasResults">
+			<nav class="mt-4" aria-label="Gallery pagination" *ngIf="hasResults">
 				<ul class="pagination justify-content-center mb-0">
 					<li class="page-item" [class.disabled]="currentPage === 1">
-						<button
-							class="page-link"
-							type="button"
-							[disabled]="currentPage === 1"
-							(click)="prevPage()"
-						>
+						<button class="page-link" type="button" (click)="prevPage()">
 							Previous
 						</button>
 					</li>
@@ -132,12 +78,7 @@
 						</button>
 					</li>
 					<li class="page-item" [class.disabled]="currentPage === totalPages">
-						<button
-							class="page-link"
-							type="button"
-							[disabled]="currentPage === totalPages"
-							(click)="nextPage()"
-						>
+						<button class="page-link" type="button" (click)="nextPage()">
 							Next
 						</button>
 					</li>
@@ -145,5 +86,19 @@
 			</nav>
 		</div>
 	</section>
-</main>
 
+	<div class="gallery-modal" *ngIf="activeItem" (click)="closeModal()">
+		<div class="gallery-modal__content" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+			<button class="gallery-modal__close" type="button" (click)="closeModal()" aria-label="Close">
+				<i class="bi bi-x-lg"></i>
+			</button>
+			<div class="gallery-modal__media">
+				<img [src]="activeItem.imageUrl" [alt]="activeItem.title" />
+			</div>
+			<div class="gallery-modal__body">
+				<h3>{{ activeItem.title }}</h3>
+				<p>{{ activeItem.subtitle }}</p>
+			</div>
+		</div>
+	</div>
+</main>

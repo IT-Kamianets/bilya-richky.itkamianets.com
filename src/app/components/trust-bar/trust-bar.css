@@ -2,24 +2,33 @@
 	display: block;
 }
 
-section {
-	background: var(--c-bg-secondary) !important;
-	border-color: var(--c-border) !important;
-	color: var(--c-text-primary);
+.highlights {
+	background: var(--c-bg-secondary);
 }
 
-.text-secondary {
-	color: var(--c-text-muted) !important;
+.highlight-card {
+	display: grid;
+	gap: var(--sp-2);
+	padding: var(--sp-4);
+	background: var(--c-bg-tertiary);
+	border-radius: var(--radius-card);
+	border: 1px solid var(--c-border);
+	min-height: 220px;
 }
 
-.border {
-	border-color: var(--c-border) !important;
+.highlight-card i {
+	font-size: 24px;
+	color: var(--c-accent);
 }
 
-.bg-body-tertiary {
-	background: var(--c-bg-tertiary) !important;
+.highlight-card h3 {
+	font-family: var(--ff-heading);
+	font-size: 20px;
+	margin: 0;
 }
 
-.rounded-4 {
-	border-radius: var(--radius-card) !important;
+.highlight-card p {
+	margin: 0;
+	color: var(--c-text-muted);
+	font-size: 14px;
 }

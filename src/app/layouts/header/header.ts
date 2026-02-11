@@ -1,6 +1,6 @@
 ﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ThemeDensity, ThemeMode, ThemeRadius, ThemeService } from 'wacom';
+import { ThemeService, ThemeName } from '../../services/theme.service';
 
 @Component({
 	selector: 'app-header',
@@ -11,45 +11,27 @@ import { ThemeDensity, ThemeMode, ThemeRadius, ThemeService } from 'wacom';
 })
 export class Header {
 	protected readonly theme = inject(ThemeService);
-
-	protected readonly modes: (ThemeMode | string)[] = ['light', 'dark', 'itkp'];
-	protected readonly densities: ThemeDensity[] = ['comfortable', 'compact'];
-	protected readonly radii: ThemeRadius[] = ['rounded', 'square'];
-
 	protected isMenuOpen = false;
-	protected isControlsOpen = false;
-
-	constructor() {
-		this.theme.init();
-	}
-
-	protected setMode(mode: ThemeMode | string) {
-		this.theme.setMode(mode as ThemeMode);
-	}
-
-	protected setDensity(density: ThemeDensity) {
-		this.theme.setDensity(density);
-	}
-
-	protected setRadius(radius: ThemeRadius) {
-		this.theme.setRadius(radius);
-	}
+	protected isThemeMenuOpen = false;
 
 	protected toggleMenu() {
 		this.isMenuOpen = !this.isMenuOpen;
-		if (this.isMenuOpen) {
-			this.isControlsOpen = false;
-		}
-	}
-
-	protected toggleControls() {
-		this.isControlsOpen = !this.isControlsOpen;
-		if (this.isControlsOpen) {
-			this.isMenuOpen = false;
-		}
 	}
 
 	protected closeMenu() {
 		this.isMenuOpen = false;
+	}
+
+	protected toggleThemeMenu(): void {
+		this.isThemeMenuOpen = !this.isThemeMenuOpen;
+	}
+
+	protected closeThemeMenu(): void {
+		this.isThemeMenuOpen = false;
+	}
+
+	protected setTheme(theme: ThemeName): void {
+		this.theme.setTheme(theme);
+		this.closeThemeMenu();
 	}
 }

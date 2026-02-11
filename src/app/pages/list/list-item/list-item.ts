@@ -1,112 +1,42 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+﻿import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../../models/Product.model';
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { Product, RoomSpecifications } from '../../../models/Product.model';
 
 @Component({
-  selector: 'app-list-item',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './list-item.html',
-  styleUrls: ['./list-item.css']
+	selector: 'app-list-item',
+	standalone: true,
+	imports: [CommonModule],
+	templateUrl: './list-item.html',
+	styleUrls: ['./list-item.css'],
 })
-export class ListItem implements OnInit {
+export class ListItem {
+	@Input() product!: Product;
 
-  @Input() product!: Product;
-  @Input() viewMode: 'grid' | 'list' = 'grid';
+	constructor(private router: Router) {}
 
-  @Output() viewProduct = new EventEmitter<number>();
-  @Output() quickAddToCart = new EventEmitter<Product>();
+	get highlights(): string[] {
+		const specs: RoomSpecifications = this.product?.specifications ?? {};
+		const items: string[] = [];
 
-  isFavorite = false;
-  isHovered = false;
+		if (specs.Sleeps) {
+			items.push(`Sleeps ${specs.Sleeps}`);
+		}
+		if (specs.Bed) {
+			items.push(`${specs.Bed}`);
+		}
+		if (specs.View) {
+			items.push(`${specs.View}`);
+		}
+		if (specs.Breakfast) {
+			items.push(`${specs.Breakfast}`);
+		}
 
-  private platformId = inject(PLATFORM_ID);
+		return items.slice(0, 3);
+	}
 
-  constructor(private router: Router) {}
-
-  isBrowser(): boolean {
-    return isPlatformBrowser(this.platformId);
-  }
-
-  ngOnInit(): void {
-    this.checkFavoriteStatus();
-  }
-
-  checkFavoriteStatus(): void {
-    const favs = this.getFavoritesFromStorage();
-    this.isFavorite = favs.includes(this.product.id);
-  }
-
-  getFavoritesFromStorage(): number[] {
-    if (!this.isBrowser()) return [];
-    const stored = localStorage.getItem('favorites');
-    return stored ? JSON.parse(stored) : [];
-  }
-
-  toggleFavorite(event: Event): void {
-    event.stopPropagation();
-    if (!this.isBrowser()) return;
-
-    let favs = this.getFavoritesFromStorage();
-
-    if (favs.includes(this.product.id)) {
-      favs = favs.filter(id => id !== this.product.id);
-      this.isFavorite = false;
-    } else {
-      favs.push(this.product.id);
-      this.isFavorite = true;
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(favs));
-  }
-
-  onView(): void {
-    this.viewProduct.emit(this.product.id);
-    this.router.navigate(['/profile', this.product.id]);
-  }
-
-  onQuickAdd(event: Event): void {
-    event.stopPropagation();
-    if (this.product.stock > 0) {
-      this.quickAddToCart.emit(this.product);
-    }
-  }
-
-  getStars(rating: number): number[] {
-    return Array(Math.floor(rating)).fill(0);
-  }
-
-  getEmptyStars(rating: number): number[] {
-    return Array(5 - Math.floor(rating)).fill(0);
-  }
-
-  getDiscountedPrice(): number {
-    return this.product.discount
-      ? this.product.price * (1 - this.product.discount / 100)
-      : this.product.price;
-  }
-
-  hasDiscount(): boolean {
-    return !!this.product.discount && this.product.discount > 0;
-  }
-
-  isInStock(): boolean {
-    return this.product.stock > 0;
-  }
-
-  getStockStatus(): string {
-    if (this.product.stock === 0) return 'Sold out';
-    if (this.product.stock < 5) return `Only ${this.product.stock} rooms left`;
-    return 'Available now';
-  }
-
-  getStockClass(): string {
-    if (this.product.stock === 0) return 'out-of-stock';
-    if (this.product.stock < 5) return 'low-stock';
-    return 'in-stock';
-  }
+	bookNow(event: Event): void {
+		event.stopPropagation();
+		this.router.navigate(['/booking'], { queryParams: { id: this.product.id } });
+	}
 }
-

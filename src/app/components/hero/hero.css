@@ -1,105 +1,138 @@
-﻿.hero__bg {
-	background: linear-gradient(to bottom, var(--c-bg-tertiary), var(--c-bg-secondary));
-	z-index: -1;
-}
-
-.hero__dot {
-	width: 0.5rem;
-	height: 0.5rem;
-	border-radius: 50%;
-	background: var(--c-primary);
-}
-
-.hero__traffic {
-	width: 0.5rem;
-	height: 0.5rem;
-	border-radius: 50%;
-	display: inline-block;
-}
-
-.hero__traffic--red {
-	background: var(--c-secondary);
-}
-.hero__traffic--amber {
-	background: #f7c948;
-}
-.hero__traffic--green {
-	background: #198754;
-}
-
-.hero__glow {
-	inset: -1.5rem;
-	position: absolute;
-	z-index: -1;
-	border-radius: calc(var(--radius-card) + 18px);
-	background: radial-gradient(circle at 30% 30%, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0));
-	filter: blur(18px);
-}
-
-.hero-photo {
+﻿.hero {
 	position: relative;
-	overflow: hidden;
-	border-radius: calc(var(--radius-card) + 6px);
 	background: var(--c-bg-secondary);
+	overflow: hidden;
 }
 
-.hero-photo__img {
-	width: 100%;
-	height: 100%;
-	aspect-ratio: 4 / 3;
-	object-fit: cover;
-	object-position: center;
+.hero__bg {
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at top left, rgba(179, 106, 74, 0.18), transparent 55%),
+		radial-gradient(circle at bottom right, rgba(31, 92, 92, 0.2), transparent 45%);
+	z-index: 0;
+}
+
+.hero__grid {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	align-items: center;
+	gap: var(--sp-8);
+}
+
+.hero__title {
+	font-size: clamp(36px, 4vw, 56px);
+	line-height: 1.1;
+	margin: var(--sp-3) 0 var(--sp-4);
+}
+
+.hero__subtitle {
+	color: var(--c-text-muted);
+	font-size: 18px;
+	max-width: 520px;
+}
+
+.hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sp-3);
+	margin: var(--sp-4) 0 var(--sp-5);
+}
+
+.hero__details {
+	display: flex;
+	gap: var(--sp-6);
+	flex-wrap: wrap;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--c-text-muted);
+}
+
+.hero__detail-label {
 	display: block;
 }
 
-.hero-photo__caption {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: var(--sp-3) var(--sp-4);
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-	color: #ffffff;
+.hero__detail-value {
+	display: block;
+	font-size: 14px;
+	color: var(--c-text-secondary);
+	font-weight: 600;
+	letter-spacing: 0.5px;
+}
+
+.hero__media {
 	display: grid;
-	gap: 4px;
+	gap: var(--sp-4);
 }
 
-.hero-photo__caption .small {
-	color: #ffffff;
+.hero__image-wrapper {
+	position: relative;
+	border-radius: 28px;
+	overflow: hidden;
+	box-shadow: var(--shadow-md);
 }
 
-.hero .card {
-	background: var(--c-bg-secondary);
-	border-color: var(--c-border) !important;
-	box-shadow: var(--shadow-sm);
+.hero__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	min-height: 320px;
 }
 
-.hero .border {
-	border-color: var(--c-border) !important;
+.hero__caption {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	background: rgba(255, 250, 244, 0.9);
+	border-radius: 16px;
+	padding: 12px 16px;
+	backdrop-filter: blur(6px);
 }
 
-.hero .text-secondary,
-.hero .text-body-secondary {
-	color: var(--c-text-muted) !important;
+.hero__caption-title {
+	font-weight: 600;
+	color: var(--c-text-secondary);
 }
 
-.hero .text-dark,
-.hero .fw-bold,
-.hero .fw-semibold {
-	color: var(--c-text-secondary) !important;
+.hero__caption-text {
+	font-size: 13px;
+	color: var(--c-text-muted);
 }
 
-.hero .btn-dark {
-	background: var(--c-btn-dark-bg) !important;
-	border-color: var(--c-btn-dark-border) !important;
-	color: var(--c-on-dark) !important;
+.hero__badge {
+	display: flex;
+	justify-content: flex-end;
 }
 
-.hero .btn-outline-secondary {
-	border-color: var(--c-border) !important;
-	color: var(--c-text-secondary) !important;
-}
+@media (max-width: 768px) {
+	.hero__grid {
+		gap: var(--sp-5);
+	}
 
-.hero .btn-outline-secondary:hover {
-	background: var(--c-bg-secondary) !important;
+	.hero__title {
+		font-size: clamp(30px, 8vw, 40px);
+	}
+
+	.hero__subtitle {
+		font-size: 16px;
+	}
+
+	.hero__actions .btn {
+		width: 100%;
+	}
+
+	.hero__details {
+		gap: var(--sp-4);
+	}
+
+	.hero__image {
+		min-height: 240px;
+	}
+
+	.hero__caption {
+		left: 16px;
+		bottom: 16px;
+	}
 }

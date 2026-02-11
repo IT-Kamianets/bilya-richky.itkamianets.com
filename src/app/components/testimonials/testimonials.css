@@ -1,32 +1,33 @@
-﻿:host {
-	display: block;
-}
-
-section.bg-light {
-	background: var(--c-bg-tertiary) !important;
-	color: var(--c-text-primary);
-}
-
-h2,
-.fw-bold,
-.fw-semibold {
-	color: var(--c-text-secondary);
-}
-
-.text-secondary {
-	color: var(--c-text-muted) !important;
-}
-
-.card {
+﻿.testimonials {
 	background: var(--c-bg-secondary);
-	border-color: var(--c-border) !important;
+}
+
+.testimonial-card {
+	background: var(--c-bg-tertiary);
+	border-radius: var(--radius-card);
+	padding: var(--sp-4);
+	border: 1px solid var(--c-border);
 	box-shadow: var(--shadow-sm);
+	display: grid;
+	gap: var(--sp-3);
+	min-height: 220px;
 }
 
-.border {
-	border-color: var(--c-border) !important;
+.testimonial-stars {
+	color: var(--c-accent);
+	font-size: 14px;
 }
 
-.rounded-4 {
-	border-radius: var(--radius-card) !important;
+.testimonial-card blockquote {
+	margin: 0;
+	font-size: 16px;
+	color: var(--c-text-secondary);
+	line-height: 1.6;
+}
+
+.testimonial-card figcaption {
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--c-text-muted);
 }

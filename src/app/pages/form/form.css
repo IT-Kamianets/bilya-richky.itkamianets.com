@@ -1,69 +1,100 @@
-/* Main Page Background */
-.form-page {
-  background: var(--c-bg-tertiary);
-  color: var(--c-text-primary);
-  min-height: 100vh;
+﻿.booking-page {
+	background: var(--c-bg-primary);
 }
 
-.form-page h3, 
-.form-page h5, 
-.form-page .form-label {
-  color: var(--c-text-secondary);
+.booking-hero {
+	background: var(--c-bg-secondary);
+	padding-bottom: var(--sp-4);
 }
 
-/* Input Fields */
-.form-page .form-control {
-  background: var(--c-bg-secondary);
-  border-color: var(--c-border);
-  color: var(--c-text-primary);
+.booking-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: var(--sp-5);
 }
 
-.form-page .form-control:focus {
-  border-color: #0d6efd; /* Blue focus border */
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  background: var(--c-bg-secondary);
-  color: var(--c-text-primary);
+.booking-card {
+	border: 1px solid var(--c-border);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-sm);
 }
 
-.form-page .form-control::placeholder {
-  color: var(--c-placeholder);
+.booking-info__item {
+	display: flex;
+	gap: var(--sp-3);
+	align-items: flex-start;
+	margin-bottom: var(--sp-3);
 }
 
-/* Card (Select Item) */
-.form-page .card {
-  background: var(--c-bg-secondary);
-  border-color: var(--c-border) !important;
+.booking-info__item i {
+	font-size: 20px;
+	color: var(--c-primary);
 }
 
-/* Submit Button - FORCED BLUE */
-.form-page .btn-dark {
-  background-color: #0d6efd !important; /* Specific Blue Color */
-  border-color: #0d6efd !important;
-  color: #ffffff !important;
-  font-weight: 600;
+.booking-info__item p {
+	margin: 0 0 4px;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--c-text-muted);
 }
 
-.form-page .btn-dark:hover {
-  background-color: #0b5ed7 !important; /* Darker Blue on Hover */
-  border-color: #0a58ca !important;
-  opacity: 1;
+.booking-info__item a,
+.booking-info__item span {
+	color: var(--c-text-secondary);
+	font-weight: 500;
+	text-decoration: none;
 }
 
-/* Secondary Buttons */
-.form-page .btn-outline-secondary {
-  border-color: var(--c-border);
-  color: var(--c-text-secondary);
+.booking-info__note {
+	border-top: 1px solid var(--c-border);
+	padding-top: var(--sp-3);
+	color: var(--c-text-muted);
+	font-size: 13px;
 }
 
-.form-page .btn-outline-secondary:hover {
-  background: var(--c-bg-secondary);
-  color: var(--c-text-primary);
+.booking-room {
+	display: flex;
+	gap: var(--sp-3);
+	align-items: center;
 }
 
-.form-page .text-muted {
-  color: var(--c-text-muted) !important;
+.booking-room img {
+	width: 80px;
+	height: 80px;
+	border-radius: 12px;
+	object-fit: cover;
 }
 
-.form-page .text-primary {
-  color: #0d6efd !important; /* Blue Text */
+.booking-room__title {
+	margin: 0 0 6px;
+	font-weight: 600;
+}
+
+.booking-room__price {
+	margin: 0;
+	color: var(--c-text-muted);
+	font-size: 13px;
+}
+
+.booking-success__details {
+	display: grid;
+	gap: var(--sp-3);
+	margin-top: var(--sp-3);
+}
+
+.booking-success__details span {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--c-text-muted);
+}
+
+.booking-success__details strong {
+	display: block;
+	color: var(--c-text-secondary);
+}
+
+.booking-success {
+	background: var(--c-bg-tertiary);
 }

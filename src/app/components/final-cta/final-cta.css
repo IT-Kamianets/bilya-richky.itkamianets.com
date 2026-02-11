@@ -1,45 +1,38 @@
-﻿:host {
-	display: block;
+﻿.final-cta {
+	background: var(--c-bg-primary);
 }
 
-section {
-	background: var(--c-bg-secondary) !important;
-	color: var(--c-text-primary);
+.final-cta__card {
+	background: var(--c-bg-secondary);
+	border-radius: var(--radius-card);
+	padding: var(--sp-5);
+	border: 1px solid var(--c-border);
+	box-shadow: var(--shadow-md);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--sp-4);
 }
 
-h2,
-.fw-bold,
-.fw-semibold {
-	color: var(--c-text-secondary);
+.final-cta__card h2 {
+	margin: 0 0 var(--sp-2);
+	font-family: var(--ff-heading);
 }
 
-.text-secondary {
-	color: var(--c-text-muted) !important;
+.final-cta__card p {
+	margin: 0;
+	color: var(--c-text-muted);
 }
 
-.bg-light {
-	background: var(--c-bg-tertiary) !important;
+.final-cta__actions {
+	display: flex;
+	gap: var(--sp-3);
+	flex-wrap: wrap;
 }
 
-.border {
-	border-color: var(--c-border) !important;
-}
-
-.rounded-5 {
-	border-radius: calc(var(--radius-card) + 6px) !important;
-}
-
-.btn-dark {
-	background: var(--c-btn-dark-bg) !important;
-	border-color: var(--c-btn-dark-border) !important;
-	color: var(--c-on-dark) !important;
-}
-
-.btn-outline-secondary {
-	border-color: var(--c-border) !important;
-	color: var(--c-text-secondary) !important;
-}
-
-.btn-outline-secondary:hover {
-	background: var(--c-bg-secondary) !important;
+@media (max-width: 768px) {
+	.final-cta__card {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 }

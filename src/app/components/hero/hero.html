@@ -1,82 +1,52 @@
-﻿<section class="hero position-relative overflow-hidden">
-	<div class="hero__bg position-absolute top-0 start-0 end-0 bottom-0"></div>
-
-	<div class="container-lg px-4 py-5 py-lg-6 position-relative">
-		<div class="row g-4 align-items-center">
-			<div class="col-12 col-lg-6">
-				<div
-					class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill border bg-white shadow-sm"
-				>
-					<span class="hero__dot"></span>
-					<span class="small fw-medium text-secondary"
-						>Riverside heritage hotel - Kamianets-Podilskyi</span
-					>
-				</div>
-
-				<h1 class="display-5 fw-bold mt-3 mb-3">
-					Stay by the Smotrych river at
-					<span class="text-dark">Bilya Richky Hotel</span>
+﻿<section class="hero">
+	<div class="hero__bg"></div>
+	<div class="container-lg px-4 py-5 py-lg-6">
+		<div class="hero__grid">
+			<div class="hero__content">
+				<span class="section-kicker">Riverside Boutique Hotel</span>
+				<h1 class="hero__title">
+					Stay by the Smotrych river at <span class="text-accent">Bilya Richky</span>
 				</h1>
-
-				<p class="text-secondary lh-lg mb-4">
-					A calm, green escape with canyon views, wood-and-stone interiors, and quick access to
-					the Old Town. Perfect for romantic weekends, family rest, and slow mornings by the water.
+				<p class="hero__subtitle">
+					A calm, warm retreat with canyon views, handcrafted interiors, and easy access to
+					Kamianets-Podilskyi Old Town.
 				</p>
-
-				<div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 gap-sm-3">
-					<a routerLink="/form" class="btn btn-dark fw-semibold px-4 py-2">
-						Request a booking
-					</a>
-
-					<a routerLink="/list" class="btn btn-outline-secondary fw-semibold px-4 py-2">
-						Explore rooms
-					</a>
-
-					<div class="small text-secondary ms-sm-2">Check-in 14:00 - Check-out 12:00</div>
+				<div class="hero__actions">
+					<a routerLink="/rooms" class="btn btn-primary btn-lg">View rooms</a>
+					<a routerLink="/booking" class="btn btn-outline-primary btn-lg">Book now</a>
+				</div>
+				<div class="hero__details">
+					<div>
+						<span class="hero__detail-label">Check-in</span>
+						<span class="hero__detail-value">14:00</span>
+					</div>
+					<div>
+						<span class="hero__detail-label">Check-out</span>
+						<span class="hero__detail-value">12:00</span>
+					</div>
+					<div>
+						<span class="hero__detail-label">Location</span>
+						<span class="hero__detail-value">Smotrych canyon</span>
+					</div>
 				</div>
 			</div>
 
-			<div class="col-12 col-lg-6">
-				<div class="hero__glow position-absolute d-none d-lg-block"></div>
-
-				<div class="hero-photo card border rounded-4 shadow-sm">
+			<div class="hero__media">
+				<div class="hero__image-wrapper">
 					<img
 						src="assets/img/bilya-richky/exterior/exterior-4.jpg"
 						alt="Bilya Richky Hotel terraces and canyon views"
-						class="hero-photo__img"
+						class="hero__image"
 					/>
-					<div class="hero-photo__caption">
-						<div class="small fw-semibold">Riverside terraces</div>
-						<div class="small">Smotrych canyon views and evening light</div>
+					<div class="hero__caption">
+						<div class="hero__caption-title">Canyon terraces</div>
+						<div class="hero__caption-text">Sunset tea with river views</div>
 					</div>
 				</div>
-
-				<div class="row g-2 mt-3">
-					<div class="col-4">
-						<div
-							class="border bg-white rounded-4 py-3 text-center small fw-semibold shadow-sm"
-						>
-							River views
-						</div>
-					</div>
-					<div class="col-4">
-						<div
-							class="border bg-white rounded-4 py-3 text-center small fw-semibold shadow-sm"
-						>
-							Ukrainian cuisine
-						</div>
-					</div>
-					<div class="col-4">
-						<div
-							class="border bg-white rounded-4 py-3 text-center small fw-semibold shadow-sm"
-						>
-							Family-friendly
-						</div>
-					</div>
+				<div class="hero__badge">
+					<span class="badge-soft">Boutique comfort · Riverside calm</span>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-

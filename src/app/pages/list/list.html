@@ -1,329 +1,72 @@
-﻿<div class="list-page">
-  <div class="container-fluid px-4 py-5">
-
-    <!-- HEADER -->
-    <div class="page-header mb-4">
-      <div class="row align-items-center g-3">
-        <div class="col-md-6">
-          <h1 class="page-title">
-            <i class="bi bi-grid-3x3-gap me-2"></i>Rooms & Cottages
-          </h1>
-          <p class="page-subtitle">Find your stay by the Smotrych river in Kamianets-Podilskyi.</p>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- TOOLBAR -->
-    <div class="toolbar mb-4 clean-toolbar">
-
-      <!-- LEFT -->
-      <div class="toolbar-left">
-
-        <!-- Toggle filters -->
-        <button 
-          class="btn-filter-toggle toggle-animated"
-          [class.open]="showFiltersSidebar"
-          (click)="toggleFiltersSidebar()">
-
-          <i class="bi toggle-icon" 
-            [ngClass]="showFiltersSidebar ? 'bi-x-lg' : 'bi-funnel-fill'">
-          </i>
-
-          <span class="toggle-text">
-            {{ showFiltersSidebar ? 'Hide filters' : 'Show filters' }}
-          </span>
-
-        </button>
-
-        <!-- Items found -->
-        <div class="results-info">
-          <span>Found <strong>{{ filteredProducts.length }}</strong> rooms</span>
-        </div>
-
-      </div>
-
-      <!-- RIGHT -->
-      <div class="toolbar-right">
-
-        <!-- GRID / LIST -->
-        <div class="view-mode-toggle">
-
-          <button 
-            class="btn-view-mode" 
-            [class.active]="viewMode.type === 'grid'"
-            (click)="setViewMode('grid')"
-            title="Grid">
-            <i class="bi bi-grid-3x3-gap"></i>
-          </button>
-
-          <button 
-            class="btn-view-mode" 
-            [class.active]="viewMode.type === 'list'"
-            (click)="setViewMode('list')"
-            title="List">
-            <i class="bi bi-list-ul"></i>
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- WRAPPER -->
-    <div class="content-wrapper">
-
-      <!-- FILTER SIDEBAR -->
-      <aside 
-        class="filters-sidebar"
-        [class.show]="showMobileFilters"
-        [class.hidden]="!showFiltersSidebar">
-
-        <div class="filters-card">
-
-          <!-- SIDEBAR HEADER -->
-          <div class="filters-header">
-            <h5 class="filters-title">
-              <i class="bi bi-funnel me-2"></i>Filters
-            </h5>
-
-            <!-- Close on mobile -->
-            <button class="btn-close-filters" (click)="toggleMobileFilters()">
-              <i class="bi bi-x-lg"></i>
-            </button>
-          </div>
-
-
-          <!-- SIDEBAR CONTENT -->
-          <div class="filters-body">
-
-
-
-            <!-- SEARCH -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <i class="bi bi-search me-2"></i>Search
-              </label>
-
-              <input 
-                type="text"
-                class="form-control search-input"
-                [(ngModel)]="filters.searchQuery"
-                (ngModelChange)="onSearchChange()"
-                placeholder="Search rooms...">
-            </div>
-
-
-
-            <!-- CATEGORY -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <i class="bi bi-tag me-2"></i>Category
-              </label>
-
-              <select 
-                class="form-select" 
-                [(ngModel)]="filters.category" 
-                (change)="onCategoryChange()">
-
-                <option value="">All categories</option>
-                <option *ngFor="let category of categories" 
-                        [value]="category">
-                  {{ category }}
-                </option>
-
-              </select>
-            </div>
-
-
-
-            <!-- PRICE -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <i class="bi bi-cash me-2"></i>Rate per night (UAH)
-              </label>
-
-              <div class="price-display">
-                UAH {{ filters.priceMin }} - UAH {{ filters.priceMax }}
-              </div>
-
-              <div class="price-range-wrapper">
-
-                <div class="price-range-track"></div>
-
-                <div class="price-range-fill" 
-                     [style.left.%]="(filters.priceMin / maxPrice) * 100"
-                     [style.right.%]="100 - (filters.priceMax / maxPrice) * 100">
-                </div>
-
-                <input 
-                  type="range"
-                  class="form-range price-range-min"
-                  [(ngModel)]="filters.priceMin"
-                  [min]="minPrice"
-                  [max]="maxPrice"
-                  step="50"
-                  (ngModelChange)="onPriceRangeChange()">
-
-                <input 
-                  type="range"
-                  class="form-range price-range-max"
-                  [(ngModel)]="filters.priceMax"
-                  [min]="minPrice"
-                  [max]="maxPrice"
-                  step="50"
-                  (ngModelChange)="onPriceRangeChange()">
-
-              </div>
-            </div>
-
-
-
-            <!-- AVAILABILITY -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <i class="bi bi-door-open me-2"></i>Availability
-              </label>
-
-              <div class="form-check">
-                <input 
-                  class="form-check-input" 
-                  type="checkbox"
-                  [(ngModel)]="filters.inStockOnly"
-                  (ngModelChange)="onStockFilterChange()">
-
-                <label class="form-check-label">
-                  Show available rooms only
-                </label>
-              </div>
-            </div>
-
-
-
-            <!-- SORTING -->
-            <div class="filter-group">
-              <label class="filter-label">
-                <i class="bi bi-arrow-down-up me-2"></i>Sort by
-              </label>
-
-              <select 
-                class="form-select"
-                [(ngModel)]="filters.sortBy"
-                (change)="onSortChange()">
-
-                <option value="newest">Newest</option>
-                <option value="price-asc">Price: low > high</option>
-                <option value="price-desc">Price: high > low</option>
-                <option value="rating">Guest rating</option>
-                <option value="name">Name A-Z</option>
-
-              </select>
-            </div>
-
-
-
-            <!-- RESET -->
-            <button 
-              class="btn btn-reset-all"
-              *ngIf="hasActiveFilters()"
-              (click)="resetFilters()">
-              <i class="bi bi-arrow-counterclockwise me-2"></i>
-              Reset all filters
-            </button>
-
-
-
-          </div>
-        </div>
-      </aside>
-
-
-
-
-      <!-- ROOMS -->
-      <main class="products-main">
-
-        <div class="products-container" *ngIf="displayedProducts.length > 0">
-
-          <div class="products-grid" [class.list-view]="viewMode.type === 'list'">
-
-            <div *ngFor="let product of displayedProducts">
-              <app-list-item 
-                [product]="product"
-                [viewMode]="viewMode.type"
-                (viewProduct)="onViewProduct($event)"
-                (quickAddToCart)="onQuickAddToCart(product)">
-              </app-list-item>
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- EMPTY -->
-        <div class="empty-state" *ngIf="displayedProducts.length === 0">
-          <i class="bi bi-inbox empty-icon"></i>
-          <h3 class="empty-title">No rooms found</h3>
-          <p class="empty-text">Try adjusting your filters or search.</p>
-
-          <button class="btn btn-primary mt-3" (click)="resetFilters()">
-            <i class="bi bi-arrow-counterclockwise me-2"></i>
-            Reset filters
-          </button>
-        </div>
-
-
-
-        <!-- PAGINATION -->
-        <div class="pagination-container" *ngIf="totalPages > 1">
-          <nav aria-label="Rooms navigation">
-            <ul class="pagination">
-
-              <li class="page-item" [class.disabled]="currentPage === 1">
-                <a class="page-link" (click)="previousPage()">
-                  <i class="bi bi-chevron-left"></i>
-                </a>
-              </li>
-
-              <li 
-                *ngFor="let page of getPageNumbers()" 
-                class="page-item"
-                [class.active]="page === currentPage">
-                <a class="page-link" (click)="goToPage(page)">
-                  {{ page }}
-                </a>
-              </li>
-
-              <li class="page-item" [class.disabled]="currentPage === totalPages">
-                <a class="page-link" (click)="nextPage()">
-                  <i class="bi bi-chevron-right"></i>
-                </a>
-              </li>
-
-            </ul>
-          </nav>
-        </div>
-
-      </main>
-
-
-    </div><!-- /wrapper -->
-
-
-  </div>
-</div>
-
-
-<!-- MOBILE OVERLAY -->
-<div class="mobile-filter-overlay" 
-     *ngIf="showMobileFilters" 
-     (click)="toggleMobileFilters()">
-</div>
-
-
-
+﻿<main class="rooms-page">
+	<section class="rooms-hero">
+		<div class="container-lg px-4 py-5">
+			<div class="rooms-hero__grid">
+				<div>
+					<p class="section-kicker">Rooms & Prices</p>
+					<h1 class="section-title">Rooms designed for restful stays</h1>
+					<p class="section-subtitle">
+						Choose from boutique rooms and cottages with canyon or garden views.
+						Rates vary by season and are confirmed with your dates.
+					</p>
+				</div>
+				<div class="rooms-hero__note">
+					<div class="badge-soft">Seasonal pricing</div>
+					<p>
+						Prices are shown as "from" rates. We confirm the final price after
+						receiving your booking request.
+					</p>
+				</div>
+			</div>
+
+			<div class="rooms-filters">
+				<div class="rooms-filters__chips">
+					<span class="rooms-filters__label">Filter</span>
+					<button
+						*ngFor="let category of categories"
+						class="chip"
+						[class.active]="filters.category === category"
+						(click)="filters.category = category; applyFilters()"
+						type="button"
+					>
+						{{ category }}
+					</button>
+				</div>
+				<div class="rooms-filters__search">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Search by room or feature"
+						[(ngModel)]="filters.searchQuery"
+						(ngModelChange)="applyFilters()"
+					/>
+				</div>
+				<div class="rooms-filters__sort">
+					<label class="form-label">Sort</label>
+					<select class="form-select" [(ngModel)]="filters.sortBy" (change)="applyFilters()">
+						<option value="price-asc">Price: low to high</option>
+						<option value="price-desc">Price: high to low</option>
+						<option value="name">Name A-Z</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="rooms-grid">
+		<div class="container-lg px-4 pb-5">
+			<div class="row g-4">
+				<div class="col-12 col-md-6 col-lg-4" *ngFor="let product of filteredProducts">
+					<app-list-item [product]="product"></app-list-item>
+				</div>
+			</div>
+
+			<div class="rooms-empty" *ngIf="filteredProducts.length === 0">
+				<p class="mb-2">No rooms match your filters.</p>
+				<button class="btn btn-outline-primary" (click)="filters = { category: 'All', searchQuery: '', sortBy: 'price-asc' }; applyFilters()">
+					Reset filters
+				</button>
+			</div>
+		</div>
+	</section>
+</main>

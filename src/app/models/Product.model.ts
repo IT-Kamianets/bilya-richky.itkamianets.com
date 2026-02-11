@@ -2,7 +2,10 @@
 export interface RoomSpecifications {
   Sleeps?: number | string;
   View?: string;
-  [key: string]: any;
+  Size?: string;
+  Bed?: string;
+  Breakfast?: string;
+  [key: string]: string | number | undefined;
 }
 
 export interface Product {

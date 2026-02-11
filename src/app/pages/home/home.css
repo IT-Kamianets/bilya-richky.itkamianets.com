@@ -1,8 +1,4 @@
 ﻿.home {
-	background: var(--c-bg-secondary);
+	background: var(--c-bg-primary);
 	color: var(--c-text-primary);
-	min-height: 100vh;
-	font-family: var(--ff-base);
-	font-size: var(--fs);
-	letter-spacing: var(--letter-spacing);
 }

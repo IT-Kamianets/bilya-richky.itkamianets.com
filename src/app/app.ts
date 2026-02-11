@@ -1,17 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; // Import RouterLink
-import { ThemeService } from 'wacom';
+﻿import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './services/theme.service';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet], // Add imports here
+	imports: [RouterOutlet],
 	templateUrl: './app.html',
 	styleUrl: './app.css',
 })
 export class App {
-	private _themeService = inject(ThemeService);
+	private readonly theme = inject(ThemeService);
 
 	constructor() {
-		this._themeService.init();
+		this.theme.init();
 	}
 }

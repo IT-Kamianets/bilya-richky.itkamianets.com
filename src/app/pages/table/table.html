@@ -1,72 +1,93 @@
-﻿<main class="table-page">
-  <section class="py-5">
-    <div class="container">
-      <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-md-between mb-4">
-        <div>
-          <h2 class="mb-2 fw-bold">Room rates & quick comparison</h2>
-          <p class="text-muted mb-0">Seasonal rates shown in UAH. Final price depends on dates and stay length.</p>
-        </div>
-        <span class="badge text-bg-light border">Updated for 2026 season</span>
-      </div>
-      
-      <div class="card border rounded-4 shadow-sm overflow-hidden">
-        <div class="table-responsive">
-          <table class="table align-middle mb-0">
-            <thead class="bg-light border-bottom">
-              <tr>
-                <th scope="col" class="ps-4" style="width: 140px;">Image</th>
-                <th scope="col">Room</th>
-                <th scope="col">Category</th>
-                <th scope="col">Sleeps</th>
-                <th scope="col">View</th>
-                <th scope="col" class="text-end">Rate from</th>
-                <th scope="col" class="pe-4 text-end" style="width: 140px;">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of products">
-                <td class="ps-4">
-                  <div class="ratio ratio-4x3 rounded overflow-hidden border" style="width: 100px;">
-                    <img [src]="item.image" [alt]="item.title" class="object-fit-cover">
-                  </div>
-                </td>
-                
-                <td>
-                  <h6 class="mb-0 fw-semibold">{{ item.title }}</h6>
-                </td>
+﻿<main class="amenities-page">
+	<section class="amenities-hero">
+		<div class="container-lg px-4 py-5">
+			<p class="section-kicker">Amenities</p>
+			<h1 class="section-title">Everything you need for a quiet stay</h1>
+			<p class="section-subtitle">
+				Thoughtful details, warm service, and small luxuries that make the riverside feel effortless.
+			</p>
+		</div>
+	</section>
 
-                <td>
-                  <span class="badge text-bg-light border">{{ item.category }}</span>
-                </td>
+	<section class="amenities-list page-body">
+		<div class="container-lg px-4 pb-5">
+			<div class="row g-4">
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-wifi"></i>
+						<h3>Fast Wi-Fi</h3>
+						<p>Reliable connectivity in rooms, cottages, and the riverside terrace.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-cup-hot"></i>
+						<h3>Ukrainian cafe</h3>
+						<p>Seasonal menus, local ingredients, and cozy breakfasts by the canyon.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-droplet"></i>
+						<h3>Outdoor chany</h3>
+						<p>Herbal hot tubs by the river, bookable in advance for sunset sessions.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-tree"></i>
+						<h3>Garden grounds</h3>
+						<p>Quiet paths, shaded corners, and space for slow walks in the greenery.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-people"></i>
+						<h3>Family-friendly</h3>
+						<p>Playground area, picnic spots, and flexible room setups for families.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-car-front"></i>
+						<h3>Free parking</h3>
+						<p>On-site parking for guests with easy access to rooms and cottages.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-sun"></i>
+						<h3>Seasonal pool</h3>
+						<p>Outdoor pool open in warm months for quick refreshing dips.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-bell"></i>
+						<h3>Concierge help</h3>
+						<p>Local tips, taxi coordination, and help planning day trips.</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="amenity-card">
+						<i class="bi bi-moon-stars"></i>
+						<h3>Quiet hours</h3>
+						<p>Evenings stay calm from 22:00 to ensure restful nights.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                <td class="small fw-semibold">
-                  {{ item.specifications?.['Sleeps'] || 'N/A' }} guests
-                </td>
-
-                <td class="small">
-                  {{ item.specifications?.['View'] || 'N/A' }}
-                </td>
-
-                <td class="text-end fw-bold">
-                  UAH {{ item.price }}
-                </td>
-
-                <td class="pe-4 text-end">
-                  <button class="btn btn-sm btn-outline-secondary w-100" (click)="buyNow(item)">
-                    Request stay
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="mt-4 text-muted small">
-        Check-in from 14:00, check-out by 12:00. Breakfast from 70 UAH per person. Booking requires 50% prepayment (refundable with 7+ days notice).
-      </div>
-    </div>
-  </section>
+	<section class="amenities-cta">
+		<div class="container-lg px-4 pb-5">
+			<div class="amenities-cta__card">
+				<div>
+					<h2>Ready to plan your stay?</h2>
+					<p>Send your preferred dates and we will confirm availability within 24 hours.</p>
+				</div>
+				<a routerLink="/booking" class="btn btn-primary">Request a booking</a>
+			</div>
+		</div>
+	</section>
 </main>
-
-

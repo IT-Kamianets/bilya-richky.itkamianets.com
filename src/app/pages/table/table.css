@@ -1,73 +1,62 @@
-/* Main Page Background */
-.table-page {
-  background: var(--c-bg-tertiary);
-  color: var(--c-text-primary);
-  min-height: 100vh;
+﻿.amenities-page {
+	background: var(--c-bg-primary);
 }
 
-.table-page h2, 
-.table-page h6 {
-  color: var(--c-text-primary);
+.amenities-hero {
+	background: var(--c-bg-secondary);
+	padding-bottom: var(--sp-5);
 }
 
-/* Card Background */
-.table-page .card {
-  background: var(--c-bg-secondary);
-  border-color: var(--c-border) !important;
-  box-shadow: var(--shadow-sm);
+.amenity-card {
+	background: var(--c-bg-secondary);
+	border: 1px solid var(--c-border);
+	border-radius: var(--radius-card);
+	padding: var(--sp-4);
+	min-height: 220px;
+	box-shadow: var(--shadow-sm);
+	display: grid;
+	gap: var(--sp-2);
 }
 
-/* Table Styles */
-.table-page .table {
-  --bs-table-bg: transparent;
-  --bs-table-color: var(--c-text-primary);
-  --bs-table-border-color: var(--c-border);
-  color: var(--c-text-primary);
+.amenity-card i {
+	font-size: 24px;
+	color: var(--c-primary);
 }
 
-.table-page .table td, 
-.table-page .table th {
-  border-bottom-color: var(--c-border);
-  background-color: transparent;
+.amenity-card h3 {
+	font-family: var(--ff-heading);
+	font-size: 20px;
+	margin: 0;
 }
 
-.table-page .table-hover > tbody > tr:hover > * {
-  --bs-table-accent-bg: var(--c-bg-tertiary);
-  color: var(--c-text-primary);
+.amenity-card p {
+	margin: 0;
+	color: var(--c-text-muted);
 }
 
-/* Header Styles */
-.table-page .bg-light,
-.table-page .text-bg-light {
-  background: var(--c-bg-secondary) !important;
-  color: var(--c-text-secondary) !important;
-  border-color: var(--c-border) !important;
+.amenities-cta__card {
+	background: var(--c-bg-tertiary);
+	border-radius: var(--radius-card);
+	padding: var(--sp-5);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--sp-4);
+	border: 1px solid var(--c-border);
 }
 
-.table-page .badge.text-bg-light {
-  background: var(--c-bg-secondary) !important;
-  color: var(--c-text-secondary) !important;
-  border: 1px solid var(--c-border) !important;
+.amenities-cta__card h2 {
+	margin: 0 0 var(--sp-2);
 }
 
-/* BUY BUTTON - FORCED BLUE */
-.table-page .btn-outline-secondary {
-  background-color: #0d6efd !important; /* Blue Background */
-  border-color: #0d6efd !important;
-  color: #ffffff !important; /* White Text */
-  font-weight: 500;
+.amenities-cta__card p {
+	margin: 0;
+	color: var(--c-text-muted);
 }
 
-.table-page .btn-outline-secondary:hover {
-  background-color: #0b5ed7 !important; /* Darker Blue */
-  border-color: #0a58ca !important;
-  color: #ffffff !important;
-}
-
-.table-page .text-end.fw-bold {
-  color: var(--c-text-primary);
-}
-
-.table-page .text-muted {
-  color: var(--c-text-muted) !important;
+@media (max-width: 768px) {
+	.amenities-cta__card {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 }

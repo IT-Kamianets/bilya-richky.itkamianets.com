@@ -1,80 +1,54 @@
-﻿<section class="bg-light">
-	<div class="container-lg px-4 py-5 py-lg-6">
-		<div
-			class="d-flex flex-column gap-1 flex-sm-row align-items-sm-end justify-content-sm-between"
-		>
+﻿<section class="location-teaser">
+	<div class="container-lg px-4 py-5">
+		<div class="location-teaser__header">
 			<div>
-				<h2 class="display-6 fw-bold mb-2">Experiences</h2>
-				<p class="text-secondary mb-0">Simple moments that make the stay memorable.</p>
+				<p class="section-kicker">Location</p>
+				<h2 class="section-title">Steps from the canyon, minutes from the Old Town</h2>
+				<p class="section-subtitle">
+					A peaceful base for exploring Kamianets-Podilskyi, with the river below and historic
+					streets nearby.
+				</p>
 			</div>
-			<div class="small text-secondary">Included in your planning</div>
+			<a routerLink="/location" class="btn btn-outline-primary">View location</a>
 		</div>
 
-		<div class="row g-3 g-lg-4 mt-3">
-			<div class="col-12 col-lg-4">
-				<div class="card border rounded-4 h-100 shadow-sm">
-					<div class="card-body p-4">
-						<p class="small fw-semibold mb-2">riverside chany</p>
-						<p class="small text-secondary mb-3">
-							Outdoor hot tubs with herbal infusions and candlelight in the evening.
-						</p>
-						<div class="p-3 rounded-4 bg-body-tertiary">
-							<p class="small fw-semibold text-secondary mb-1">temperature</p>
-							<p class="h3 fw-bold mb-0">45-50 C</p>
-						</div>
-					</div>
+		<div class="location-teaser__grid">
+			<div class="location-teaser__map">
+				<div class="location-teaser__map-frame">
+					<iframe
+						title="Smotrych canyon, Kamianets-Podilskyi map"
+						src="https://www.google.com/maps?q=Smotrych%20canyon%2C%20Kamianets-Podilskyi&output=embed"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+					></iframe>
 				</div>
+				<a
+					class="location-teaser__map-link"
+					href="https://www.google.com/maps?q=Smotrych%20canyon%2C%20Kamianets-Podilskyi"
+					target="_blank"
+					rel="noopener"
+				>
+					Open in Google Maps
+				</a>
 			</div>
-
-			<div class="col-12 col-lg-4">
-				<div class="card border rounded-4 h-100 shadow-sm">
-					<div class="card-body p-4">
-						<p class="small fw-semibold mb-2">canyon terrace</p>
-						<p class="small text-secondary mb-3">
-							Panoramic space for coffee, reading, or quiet sunset views.
-						</p>
-
-						<ul class="list-unstyled mb-0 d-grid gap-2">
-							<li
-								class="d-flex align-items-center justify-content-between border rounded-3 bg-white px-3 py-2"
-							>
-								<span class="fw-medium">Sunrise coffee</span>
-								<span class="small text-secondary">06:30</span>
-							</li>
-							<li
-								class="d-flex align-items-center justify-content-between border rounded-3 bg-white px-3 py-2"
-							>
-								<span class="fw-medium">Golden hour</span>
-								<span class="small text-secondary">19:00</span>
-							</li>
-							<li
-								class="d-flex align-items-center justify-content-between border rounded-3 bg-white px-3 py-2"
-							>
-								<span class="fw-medium">Night tea</span>
-								<span class="small text-secondary">21:00</span>
-							</li>
-						</ul>
-					</div>
+			<div class="location-teaser__list">
+				<div class="location-teaser__item">
+					<span>Old Town & fortress</span>
+					<strong>8 min drive</strong>
 				</div>
-			</div>
-
-			<div class="col-12 col-lg-4">
-				<div class="card border rounded-4 h-100 shadow-sm">
-					<div class="card-body p-4">
-						<p class="small fw-semibold mb-2">local cuisine</p>
-						<p class="small text-secondary mb-3">
-							Traditional dishes with seasonal ingredients from local farms.
-						</p>
-						<span
-							class="badge text-bg-success-subtle text-success-emphasis rounded-pill px-3 py-2"
-						>
-							Chef's weekly menu
-						</span>
-					</div>
+				<div class="location-teaser__item">
+					<span>Smotrych canyon viewpoints</span>
+					<strong>5 min walk</strong>
+				</div>
+				<div class="location-teaser__item">
+					<span>Bakota day trip</span>
+					<strong>50 min drive</strong>
+				</div>
+				<div class="location-teaser__item">
+					<span>Khotyn Fortress</span>
+					<strong>35 min drive</strong>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-
