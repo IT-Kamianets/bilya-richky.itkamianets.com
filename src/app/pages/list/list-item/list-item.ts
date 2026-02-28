@@ -1,6 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { Product, RoomSpecifications } from '../../../models/Product.model';
 
 @Component({
@@ -12,8 +11,6 @@ import { Product, RoomSpecifications } from '../../../models/Product.model';
 })
 export class ListItem {
 	@Input() product!: Product;
-
-	constructor(private router: Router) {}
 
 	get highlights(): string[] {
 		const specs: RoomSpecifications = this.product?.specifications ?? {};
@@ -33,10 +30,5 @@ export class ListItem {
 		}
 
 		return items.slice(0, 3);
-	}
-
-	bookNow(event: Event): void {
-		event.stopPropagation();
-		this.router.navigate(['/booking'], { queryParams: { id: this.product.id } });
 	}
 }

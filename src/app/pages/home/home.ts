@@ -6,12 +6,14 @@ import { ListItemsSection } from '../../components/list-items-section/list-items
 import { Showcase } from '../../components/showcase/showcase';
 import { Testimonials } from '../../components/testimonials/testimonials';
 import { TrustBar } from '../../components/trust-bar/trust-bar';
+import { About } from '../../components/about/about';
 
 
 @Component({
 	imports: [
 		Hero,
 		TrustBar,
+		About,
 		Features,
 		ListItemsSection,
 		Showcase,

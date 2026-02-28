@@ -1,9 +1,9 @@
-﻿import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
 	selector: 'app-content',
-	imports: [RouterLink],
+	imports: [TranslatePipe],
 	templateUrl: './content.html',
 	styleUrl: './content.css',
 })

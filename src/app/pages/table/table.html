@@ -1,8 +1,8 @@
 ﻿<main class="amenities-page">
 	<section class="amenities-hero">
 		<div class="container-lg px-4 py-5">
-			<p class="section-kicker">Amenities</p>
-			<h1 class="section-title">Everything you need for a quiet stay</h1>
+			<p class="section-kicker">{{ 'amenities.kicker' | t }}</p>
+			<h1 class="section-title">{{ 'amenities.title' | t }}</h1>
 			<p class="section-subtitle">
 				Thoughtful details, warm service, and small luxuries that make the riverside feel effortless.
 			</p>
@@ -30,7 +30,7 @@
 					<div class="amenity-card">
 						<i class="bi bi-droplet"></i>
 						<h3>Outdoor chany</h3>
-						<p>Herbal hot tubs by the river, bookable in advance for sunset sessions.</p>
+						<p>Herbal hot tubs by the river, available by arrangement for sunset sessions.</p>
 					</div>
 				</div>
 				<div class="col-12 col-md-6 col-lg-4">
@@ -83,10 +83,50 @@
 		<div class="container-lg px-4 pb-5">
 			<div class="amenities-cta__card">
 				<div>
-					<h2>Ready to plan your stay?</h2>
-					<p>Send your preferred dates and we will confirm availability within 24 hours.</p>
+					<h2>Plan a quiet riverside visit</h2>
+					<p>Reach out on the channel you prefer and we will share availability and details.</p>
 				</div>
-				<a routerLink="/booking" class="btn btn-primary">Request a booking</a>
+				<div class="contact-links">
+					<span class="contact-links__label">Contact via socials</span>
+					<div class="contact-links__items">
+						<a
+							class="contact-links__item"
+							href="https://hotel-kp.com.ua/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-globe2"></i>
+							<span>Website</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.instagram.com/bilya_richku/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-instagram"></i>
+							<span>Instagram</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.facebook.com/bilyarichki/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-facebook"></i>
+							<span>Facebook</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.booking.com/hotel/ua/bilya-richky.html"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-building"></i>
+							<span>Booking.com</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

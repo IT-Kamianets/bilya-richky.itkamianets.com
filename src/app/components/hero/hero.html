@@ -3,17 +3,76 @@
 	<div class="container-lg px-4 py-5 py-lg-6">
 		<div class="hero__grid">
 			<div class="hero__content">
-				<span class="section-kicker">Riverside Boutique Hotel</span>
+				<span class="section-kicker">{{ 'hero.kicker' | t }}</span>
 				<h1 class="hero__title">
-					Stay by the Smotrych river at <span class="text-accent">Bilya Richky</span>
+					{{ 'hero.titlePrefix' | t }} <span class="text-accent">Bilya Richky</span>
 				</h1>
 				<p class="hero__subtitle">
-					A calm, warm retreat with canyon views, handcrafted interiors, and easy access to
-					Kamianets-Podilskyi Old Town.
+					{{ 'hero.subtitle' | t }}
 				</p>
 				<div class="hero__actions">
-					<a routerLink="/rooms" class="btn btn-primary btn-lg">View rooms</a>
-					<a routerLink="/booking" class="btn btn-outline-primary btn-lg">Book now</a>
+					<a routerLink="/rooms" class="btn btn-primary btn-lg">
+						{{ 'hero.viewRooms' | t }}
+					</a>
+				</div>
+				<div class="hero__mobile-cta">
+					<a
+						class="btn btn-primary"
+						href="https://www.booking.com/hotel/ua/bilya-richky.html"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{{ 'hero.bookOnBooking' | t }}
+					</a>
+					<a
+						class="btn btn-outline-secondary"
+						href="https://www.instagram.com/bilya_richku/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{{ 'hero.message' | t }}
+					</a>
+				</div>
+				<div class="contact-links hero__contact">
+					<span class="contact-links__label">{{ 'hero.contactLabel' | t }}</span>
+					<div class="contact-links__items">
+						<a
+							class="contact-links__item"
+							href="https://hotel-kp.com.ua/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-globe2"></i>
+							<span>Website</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.instagram.com/bilya_richku/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-instagram"></i>
+							<span>Instagram</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.facebook.com/bilyarichki/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-facebook"></i>
+							<span>Facebook</span>
+						</a>
+						<a
+							class="contact-links__item"
+							href="https://www.booking.com/hotel/ua/bilya-richky.html"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i class="bi bi-building"></i>
+							<span>Booking.com</span>
+						</a>
+					</div>
 				</div>
 				<div class="hero__details">
 					<div>

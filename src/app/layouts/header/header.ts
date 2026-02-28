@@ -1,18 +1,19 @@
 ﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ThemeService, ThemeName } from '../../services/theme.service';
+import { LanguageService, Language } from '../../services/language.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
 	selector: 'app-header',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [RouterLink, RouterLinkActive],
+	imports: [RouterLink, RouterLinkActive, TranslatePipe],
 	templateUrl: './header.html',
 	styleUrl: './header.css',
 })
 export class Header {
-	protected readonly theme = inject(ThemeService);
+	protected readonly language = inject(LanguageService);
 	protected isMenuOpen = false;
-	protected isThemeMenuOpen = false;
+	protected isSocialMenuOpen = false;
 
 	protected toggleMenu() {
 		this.isMenuOpen = !this.isMenuOpen;
@@ -22,16 +23,15 @@ export class Header {
 		this.isMenuOpen = false;
 	}
 
-	protected toggleThemeMenu(): void {
-		this.isThemeMenuOpen = !this.isThemeMenuOpen;
+	protected toggleSocialMenu(): void {
+		this.isSocialMenuOpen = !this.isSocialMenuOpen;
 	}
 
-	protected closeThemeMenu(): void {
-		this.isThemeMenuOpen = false;
+	protected closeSocialMenu(): void {
+		this.isSocialMenuOpen = false;
 	}
 
-	protected setTheme(theme: ThemeName): void {
-		this.theme.setTheme(theme);
-		this.closeThemeMenu();
+	protected setLanguage(lang: Language): void {
+		this.language.setLanguage(lang);
 	}
 }

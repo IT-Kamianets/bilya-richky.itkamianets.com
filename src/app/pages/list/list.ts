@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/Product.model';
 import { ListItem } from './list-item/list-item';
 import { PRODUCTS } from '../../data/products';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 interface RoomFilters {
 	category: string;
@@ -15,7 +16,7 @@ interface RoomFilters {
 @Component({
 	selector: 'app-list',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ListItem],
+	imports: [CommonModule, FormsModule, ListItem, TranslatePipe],
 	templateUrl: './list.html',
 	styleUrls: ['./list.css'],
 })

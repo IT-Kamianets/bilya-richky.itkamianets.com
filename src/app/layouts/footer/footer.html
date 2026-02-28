@@ -29,7 +29,7 @@
 					<nav class="footer__links">
 						<a routerLink="/rooms" class="footer__link">Rooms & Prices</a>
 						<a routerLink="/amenities" class="footer__link">Amenities</a>
-						<a routerLink="/booking" class="footer__link">Booking</a>
+						<a routerLink="/location" class="footer__link">Location & Contacts</a>
 						<a routerLink="/gallery" class="footer__link">Gallery</a>
 					</nav>
 				</div>
@@ -46,6 +46,74 @@
 			</div>
 		</div>
 
+		<div class="footer__settings" (keydown.escape)="closeThemeMenu()">
+			<div class="footer__settings-label">Theme</div>
+			<div class="footer__settings-control">
+				<button
+					class="theme-toggle"
+					type="button"
+					(click)="toggleThemeMenu()"
+					[attr.aria-expanded]="isThemeMenuOpen"
+					aria-haspopup="true"
+					aria-controls="theme-menu-footer"
+					aria-label="Choose theme"
+				>
+					<i class="bi bi-palette"></i>
+					<span>Theme</span>
+				</button>
+				<div
+					id="theme-menu-footer"
+					class="theme-popover"
+					[class.is-open]="isThemeMenuOpen"
+					role="menu"
+				>
+					<p class="theme-popover__label">Style</p>
+					<div class="theme-segmented" role="radiogroup" aria-label="Theme">
+						<button
+							type="button"
+							class="theme-option"
+							[class.active]="theme.currentTheme() === 'light'"
+							role="radio"
+							[attr.aria-checked]="theme.currentTheme() === 'light'"
+							(click)="setTheme('light')"
+						>
+							Light
+						</button>
+						<button
+							type="button"
+							class="theme-option"
+							[class.active]="theme.currentTheme() === 'dark'"
+							role="radio"
+							[attr.aria-checked]="theme.currentTheme() === 'dark'"
+							(click)="setTheme('dark')"
+						>
+							Dark
+						</button>
+						<button
+							type="button"
+							class="theme-option"
+							[class.active]="theme.currentTheme() === 'itkp'"
+							role="radio"
+							[attr.aria-checked]="theme.currentTheme() === 'itkp'"
+							(click)="setTheme('itkp')"
+						>
+							Itkp
+						</button>
+						<button
+							type="button"
+							class="theme-option"
+							[class.active]="theme.currentTheme() === 'hotel'"
+							role="radio"
+							[attr.aria-checked]="theme.currentTheme() === 'hotel'"
+							(click)="setTheme('hotel')"
+						>
+							Hotel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="footer__divider"></div>
 
 		<div class="footer__bottom">
@@ -54,14 +122,41 @@
 				<span class="footer__ukraine">Kamianets-Podilskyi, Ukraine</span>
 			</div>
 			<div class="footer__social">
-				<a href="#" aria-label="Instagram" class="footer__social-link">
+				<a
+					href="https://hotel-kp.com.ua/"
+					aria-label="Website"
+					class="footer__social-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-globe2"></i>
+				</a>
+				<a
+					href="https://www.instagram.com/bilya_richku/"
+					aria-label="Instagram"
+					class="footer__social-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					<i class="bi bi-instagram"></i>
 				</a>
-				<a href="#" aria-label="Facebook" class="footer__social-link">
+				<a
+					href="https://www.facebook.com/bilyarichki/"
+					aria-label="Facebook"
+					class="footer__social-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					<i class="bi bi-facebook"></i>
 				</a>
-				<a href="#" aria-label="Tripadvisor" class="footer__social-link">
-					<i class="bi bi-compass"></i>
+				<a
+					href="https://github.com/IT-Kamianets/bilya-richky.itkamianets.com"
+					aria-label="GitHub"
+					class="footer__social-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-github"></i>
 				</a>
 			</div>
 		</div>

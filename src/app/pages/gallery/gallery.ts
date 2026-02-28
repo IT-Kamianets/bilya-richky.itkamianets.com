@@ -1,6 +1,7 @@
-﻿import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 type GalleryItem = {
 	id: number;
@@ -12,7 +13,7 @@ type GalleryItem = {
 
 @Component({
 	selector: 'app-gallery',
-	imports: [NgFor, NgIf, FormsModule],
+	imports: [NgFor, NgIf, FormsModule, TranslatePipe],
 	templateUrl: './gallery.html',
 	styleUrl: './gallery.css',
 })

@@ -16,7 +16,7 @@
 				[routerLinkActiveOptions]="{ exact: true }"
 				(click)="closeMenu()"
 			>
-				Home
+				{{ 'nav.home' | t }}
 			</a>
 			<a
 				class="header__nav-link"
@@ -24,7 +24,7 @@
 				routerLinkActive="header__nav-link--active"
 				(click)="closeMenu()"
 			>
-				Rooms & Prices
+				{{ 'nav.rooms' | t }}
 			</a>
 			<a
 				class="header__nav-link"
@@ -32,7 +32,7 @@
 				routerLinkActive="header__nav-link--active"
 				(click)="closeMenu()"
 			>
-				Amenities
+				{{ 'nav.amenities' | t }}
 			</a>
 			<a
 				class="header__nav-link"
@@ -40,7 +40,7 @@
 				routerLinkActive="header__nav-link--active"
 				(click)="closeMenu()"
 			>
-				Location
+				{{ 'nav.location' | t }}
 			</a>
 			<a
 				class="header__nav-link"
@@ -48,78 +48,186 @@
 				routerLinkActive="header__nav-link--active"
 				(click)="closeMenu()"
 			>
-				Gallery
-			</a>
-			<a
-				class="header__nav-cta btn btn-primary btn-sm"
-				routerLink="/booking"
-				(click)="closeMenu()"
-			>
-				Book now
+				{{ 'nav.gallery' | t }}
 			</a>
 		</nav>
 
-		<div class="header__actions" (keydown.escape)="closeThemeMenu()">
-			<button
-				class="theme-toggle"
-				type="button"
-				(click)="toggleThemeMenu()"
-				[attr.aria-expanded]="isThemeMenuOpen"
-				aria-haspopup="true"
-				aria-controls="theme-menu"
-				aria-label="Choose theme"
-			>
-				<i class="bi bi-palette"></i>
-				<span>Theme</span>
-			</button>
-			<div
-				id="theme-menu"
-				class="theme-popover"
-				[class.is-open]="isThemeMenuOpen"
-				role="menu"
-			>
-				<p class="theme-popover__label">Style</p>
-				<div class="theme-segmented" role="radiogroup" aria-label="Theme">
-					<button
-						type="button"
-						class="theme-option"
-						[class.active]="theme.currentTheme() === 'light'"
-						role="radio"
-						[attr.aria-checked]="theme.currentTheme() === 'light'"
-						(click)="setTheme('light')"
+		<div class="header__actions" (keydown.escape)="closeSocialMenu()">
+			<div class="lang-toggle" role="group" aria-label="Language">
+				<button
+					type="button"
+					class="lang-option"
+					[class.active]="language.currentLanguage() === 'ua'"
+					[attr.aria-pressed]="language.currentLanguage() === 'ua'"
+					(click)="setLanguage('ua')"
+				>
+					UA
+				</button>
+				<button
+					type="button"
+					class="lang-option"
+					[class.active]="language.currentLanguage() === 'en'"
+					[attr.aria-pressed]="language.currentLanguage() === 'en'"
+					(click)="setLanguage('en')"
+				>
+					EN
+				</button>
+			</div>
+
+			<div class="header__socials" aria-label="Contact via socials">
+				<a
+					class="header__social-link"
+					href="https://hotel-kp.com.ua/"
+					aria-label="Website"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-globe2"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://www.instagram.com/bilya_richku/"
+					aria-label="Instagram"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-instagram"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://www.facebook.com/bilyarichki/"
+					aria-label="Facebook"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-facebook"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://www.booking.com/hotel/ua/bilya-richky.html"
+					aria-label="Booking.com listing"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-building"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://www.google.com.ua/travel/hotels/entity/ChcI-bnfjZqOv-8ZGgsvZy8xdGg1NXJwMBAB"
+					aria-label="Google Hotels listing"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-google"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://pokupon.ua/uk/deals/item/791494-vid-1-nochi-vidpochinku-z-harchuvannyam-u-goteli-bilya-richki-u-kam-yantsi-podilskomu-u-budni-dni"
+					aria-label="Pokupon listing"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-ticket-perforated"></i>
+				</a>
+				<a
+					class="header__social-link"
+					href="https://superdeal.ua/uk/places/item/61669"
+					aria-label="Superdeal listing"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="bi bi-percent"></i>
+				</a>
+			</div>
+
+			<div class="header__socials-menu">
+				<button
+					class="header__socials-toggle"
+					type="button"
+					(click)="toggleSocialMenu()"
+					[attr.aria-expanded]="isSocialMenuOpen"
+					aria-haspopup="true"
+					aria-controls="social-menu"
+					aria-label="Open social links"
+				>
+					<i class="bi bi-link-45deg"></i>
+				</button>
+				<div
+					id="social-menu"
+					class="header__socials-popover"
+					[class.is-open]="isSocialMenuOpen"
+					role="menu"
+				>
+					<a
+						class="header__socials-item"
+						href="https://hotel-kp.com.ua/"
+						aria-label="Website"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						Light
-					</button>
-					<button
-						type="button"
-						class="theme-option"
-						[class.active]="theme.currentTheme() === 'dark'"
-						role="radio"
-						[attr.aria-checked]="theme.currentTheme() === 'dark'"
-						(click)="setTheme('dark')"
+						<i class="bi bi-globe2"></i>
+						<span>Website</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://www.instagram.com/bilya_richku/"
+						aria-label="Instagram"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						Dark
-					</button>
-					<button
-						type="button"
-						class="theme-option"
-						[class.active]="theme.currentTheme() === 'itkp'"
-						role="radio"
-						[attr.aria-checked]="theme.currentTheme() === 'itkp'"
-						(click)="setTheme('itkp')"
+						<i class="bi bi-instagram"></i>
+						<span>Instagram</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://www.facebook.com/bilyarichki/"
+						aria-label="Facebook"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						Itkp
-					</button>
-					<button
-						type="button"
-						class="theme-option"
-						[class.active]="theme.currentTheme() === 'hotel'"
-						role="radio"
-						[attr.aria-checked]="theme.currentTheme() === 'hotel'"
-						(click)="setTheme('hotel')"
+						<i class="bi bi-facebook"></i>
+						<span>Facebook</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://www.booking.com/hotel/ua/bilya-richky.html"
+						aria-label="Booking.com listing"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						Hotel
-					</button>
+						<i class="bi bi-building"></i>
+						<span>Booking.com</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://www.google.com.ua/travel/hotels/entity/ChcI-bnfjZqOv-8ZGgsvZy8xdGg1NXJwMBAB"
+						aria-label="Google Hotels listing"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="bi bi-google"></i>
+						<span>Google Hotels</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://pokupon.ua/uk/deals/item/791494-vid-1-nochi-vidpochinku-z-harchuvannyam-u-goteli-bilya-richky-u-kam-yantsi-podilskomu-u-budni-dni"
+						aria-label="Pokupon listing"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="bi bi-ticket-perforated"></i>
+						<span>Pokupon</span>
+					</a>
+					<a
+						class="header__socials-item"
+						href="https://superdeal.ua/uk/places/item/61669"
+						aria-label="Superdeal listing"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="bi bi-percent"></i>
+						<span>Superdeal</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -136,4 +244,5 @@
 			<span class="header__hamburger-line"></span>
 		</button>
 	</div>
+
 </header>

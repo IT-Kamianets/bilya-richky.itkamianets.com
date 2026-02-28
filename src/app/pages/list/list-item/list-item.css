@@ -84,11 +84,16 @@
 
 .room-card__footer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	gap: var(--sp-3);
+	gap: var(--sp-2);
 	border-top: 1px solid var(--c-border);
 	padding-top: var(--sp-3);
+}
+
+.room-card__footer .contact-links {
+	margin-left: auto;
 }
 
 .room-card__price {
@@ -106,5 +111,9 @@
 	.room-card__footer {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.room-card__footer .contact-links {
+		margin-left: 0;
 	}
 }

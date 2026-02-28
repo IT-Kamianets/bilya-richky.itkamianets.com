@@ -9,8 +9,6 @@ export const serverRoutes: ServerRoute[] = [
 	{ path: 'gallery', renderMode: RenderMode.Prerender },
 	{ path: 'location', renderMode: RenderMode.Prerender },
 	{ path: 'content', renderMode: RenderMode.Prerender },
-	{ path: 'booking', renderMode: RenderMode.Prerender },
-	{ path: 'form', renderMode: RenderMode.Prerender },
 	{ path: 'amenities', renderMode: RenderMode.Prerender },
 	{ path: 'table', renderMode: RenderMode.Prerender },
 

@@ -1,8 +1,8 @@
 ﻿<main class="location-page">
 	<section class="location-hero">
 		<div class="container-lg px-4 py-5">
-			<p class="section-kicker">Location</p>
-			<h1 class="section-title">Between the canyon and the Old Town</h1>
+			<p class="section-kicker">{{ 'location.kicker' | t }}</p>
+			<h1 class="section-title">{{ 'location.title' | t }}</h1>
 			<p class="section-subtitle">
 				Bilya Richky sits on the banks of the Smotrych river, minutes from the fortress and
 				the historic center. The setting is quiet, green, and easy to reach.
@@ -28,13 +28,13 @@
 						class="location-map__link"
 						href="https://www.google.com/maps?q=Smotrych%20canyon%2C%20Kamianets-Podilskyi"
 						target="_blank"
-						rel="noopener"
+						rel="noopener noreferrer"
 					>
 						Open in Google Maps
 					</a>
 					<div class="location-map__note">
 						<i class="bi bi-info-circle"></i>
-						<span>Exact directions are provided after booking confirmation.</span>
+						<span>Exact directions are shared after you contact us.</span>
 					</div>
 				</div>
 
@@ -56,7 +56,7 @@
 							<li>Khotyn Fortress - 35 minutes</li>
 						</ul>
 					</div>
-					<div class="location-card">
+					<div class="location-card" id="contacts">
 						<h3>Address</h3>
 						<p>5 Onufriivska Street, Kamianets-Podilskyi, 32300</p>
 						<p class="location-info__contacts">
@@ -65,9 +65,53 @@
 						</p>
 					</div>
 					<div class="location-card location-card--cta">
-						<h3>Plan your arrival</h3>
-						<p>Tell us your dates and we will send directions and parking details.</p>
-						<a routerLink="/booking" class="btn btn-primary">Request a booking</a>
+						<h3>Contact for directions</h3>
+						<p>Reach us through socials or listings for detailed directions and parking tips.</p>
+						<div class="contact-links contact-links--compact">
+							<span class="contact-links__label">Contact via socials</span>
+							<div class="contact-links__items">
+								<a
+									class="contact-links__item"
+									href="https://hotel-kp.com.ua/"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Website"
+								>
+									<i class="bi bi-globe2"></i>
+									<span>Website</span>
+								</a>
+								<a
+									class="contact-links__item"
+									href="https://www.instagram.com/bilya_richku/"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Instagram"
+								>
+									<i class="bi bi-instagram"></i>
+									<span>Instagram</span>
+								</a>
+								<a
+									class="contact-links__item"
+									href="https://www.facebook.com/bilyarichki/"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Facebook"
+								>
+									<i class="bi bi-facebook"></i>
+									<span>Facebook</span>
+								</a>
+								<a
+									class="contact-links__item"
+									href="https://www.booking.com/hotel/ua/bilya-richky.html"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Booking.com listing"
+								>
+									<i class="bi bi-building"></i>
+									<span>Booking.com</span>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

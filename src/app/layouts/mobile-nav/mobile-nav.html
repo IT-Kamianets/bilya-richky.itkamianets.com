@@ -1,0 +1,38 @@
+<nav class="mobile-nav" aria-label="Primary">
+	<a
+		class="mobile-nav__link"
+		routerLink="/rooms"
+		routerLinkActive="mobile-nav__link--active"
+		aria-label="Rooms"
+	>
+		<i class="bi bi-door-closed"></i>
+		<span>{{ 'nav.rooms' | t }}</span>
+	</a>
+	<a
+		class="mobile-nav__link"
+		routerLink="/gallery"
+		routerLinkActive="mobile-nav__link--active"
+		aria-label="Gallery"
+	>
+		<i class="bi bi-images"></i>
+		<span>{{ 'nav.gallery' | t }}</span>
+	</a>
+	<a
+		class="mobile-nav__link"
+		routerLink="/location"
+		routerLinkActive="mobile-nav__link--active"
+		aria-label="Location"
+	>
+		<i class="bi bi-geo-alt"></i>
+		<span>{{ 'nav.location' | t }}</span>
+	</a>
+	<a
+		class="mobile-nav__link"
+		routerLink="/location"
+		fragment="contacts"
+		aria-label="Contacts"
+	>
+		<i class="bi bi-chat-dots"></i>
+		<span>{{ 'nav.contacts' | t }}</span>
+	</a>
+</nav>
